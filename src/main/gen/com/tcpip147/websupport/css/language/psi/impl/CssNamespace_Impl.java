@@ -35,8 +35,8 @@ public class CssNamespace_Impl extends ASTWrapperPsiElement implements CssNamesp
 
   @Override
   @Nullable
-  public CssUrl getUrl() {
-    return findChildByClass(CssUrl.class);
+  public CssUrlWrap getUrlWrap() {
+    return findChildByClass(CssUrlWrap.class);
   }
 
   @Override

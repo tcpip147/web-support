@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface CssAttrib extends PsiElement {
 
   @NotNull
-  List<CssIdent> getIdentList();
+  List<CssIdent_> getIdent_List();
 
   @Nullable
   CssTypeNamespacePrefix getTypeNamespacePrefix();

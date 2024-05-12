@@ -11,25 +11,25 @@ public interface CssAny_ extends PsiElement {
   List<CssAny_> getAny_List();
 
   @Nullable
-  CssDimension getDimension();
+  CssDimension_ getDimension_();
 
   @Nullable
-  CssIdent getIdent();
+  CssIdent_ getIdent_();
 
   @Nullable
-  CssNumber getNumber();
+  CssNumber_ getNumber_();
 
   @Nullable
-  CssPercentage getPercentage();
+  CssPercentage_ getPercentage_();
 
   @Nullable
-  CssUnknownDimension getUnknownDimension();
+  CssUnknownDimension_ getUnknownDimension_();
 
   @NotNull
   List<CssUnused> getUnusedList();
 
   @Nullable
-  CssUrl getUrl();
+  CssUrlWrap getUrlWrap();
 
   @NotNull
   List<CssWs> getWsList();

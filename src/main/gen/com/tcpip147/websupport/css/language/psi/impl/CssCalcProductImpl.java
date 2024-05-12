@@ -35,8 +35,8 @@ public class CssCalcProductImpl extends ASTWrapperPsiElement implements CssCalcP
 
   @Override
   @NotNull
-  public List<CssNumber> getNumberList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, CssNumber.class);
+  public List<CssNumber_> getNumber_List() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, CssNumber_.class);
   }
 
   @Override

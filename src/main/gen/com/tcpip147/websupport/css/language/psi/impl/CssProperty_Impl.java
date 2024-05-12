@@ -29,8 +29,8 @@ public class CssProperty_Impl extends ASTWrapperPsiElement implements CssPropert
 
   @Override
   @Nullable
-  public CssIdent getIdent() {
-    return findChildByClass(CssIdent.class);
+  public CssIdent_ getIdent_() {
+    return findChildByClass(CssIdent_.class);
   }
 
   @Override

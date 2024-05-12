@@ -29,8 +29,8 @@ public class CssAttribImpl extends ASTWrapperPsiElement implements CssAttrib {
 
   @Override
   @NotNull
-  public List<CssIdent> getIdentList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, CssIdent.class);
+  public List<CssIdent_> getIdent_List() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, CssIdent_.class);
   }
 
   @Override

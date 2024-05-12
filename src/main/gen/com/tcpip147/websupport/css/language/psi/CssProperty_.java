@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface CssProperty_ extends PsiElement {
 
   @Nullable
-  CssIdent getIdent();
+  CssIdent_ getIdent_();
 
   @Nullable
   CssWs getWs();

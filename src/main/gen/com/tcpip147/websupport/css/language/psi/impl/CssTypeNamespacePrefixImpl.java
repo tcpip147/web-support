@@ -29,8 +29,8 @@ public class CssTypeNamespacePrefixImpl extends ASTWrapperPsiElement implements 
 
   @Override
   @Nullable
-  public CssIdent getIdent() {
-    return findChildByClass(CssIdent.class);
+  public CssIdent_ getIdent_() {
+    return findChildByClass(CssIdent_.class);
   }
 
 }

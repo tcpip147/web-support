@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface CssKeyframesRule extends PsiElement {
 
   @NotNull
-  CssIdent getIdent();
+  CssIdent_ getIdent_();
 
   @NotNull
   List<CssKeyframeBlock> getKeyframeBlockList();

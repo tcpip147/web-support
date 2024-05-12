@@ -23,10 +23,6 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitCalc(@NotNull CssCalc o) {
-    visitPsiElement(o);
-  }
-
   public void visitCalcProduct(@NotNull CssCalcProduct o) {
     visitPsiElement(o);
   }
@@ -39,7 +35,11 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitCharset(@NotNull CssCharset o) {
+  public void visitCalc_(@NotNull CssCalc_ o) {
+    visitPsiElement(o);
+  }
+
+  public void visitCharset_(@NotNull CssCharset_ o) {
     visitPsiElement(o);
   }
 
@@ -51,7 +51,7 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitCounterStyle(@NotNull CssCounterStyle o) {
+  public void visitCounterStyle_(@NotNull CssCounterStyle_ o) {
     visitPsiElement(o);
   }
 
@@ -63,11 +63,11 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitDimension(@NotNull CssDimension o) {
+  public void visitDimension_(@NotNull CssDimension_ o) {
     visitPsiElement(o);
   }
 
-  public void visitDxImageTransform(@NotNull CssDxImageTransform o) {
+  public void visitDxImageTransform_(@NotNull CssDxImageTransform_ o) {
     visitPsiElement(o);
   }
 
@@ -115,7 +115,7 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitFunction_(@NotNull CssFunction_ o) {
+  public void visitFunction(@NotNull CssFunction o) {
     visitPsiElement(o);
   }
 
@@ -135,7 +135,7 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitIdent(@NotNull CssIdent o) {
+  public void visitIdent_(@NotNull CssIdent_ o) {
     visitPsiElement(o);
   }
 
@@ -152,10 +152,6 @@ public class CssVisitor extends PsiElementVisitor {
   }
 
   public void visitKeyframesRule(@NotNull CssKeyframesRule o) {
-    visitPsiElement(o);
-  }
-
-  public void visitMedia(@NotNull CssMedia o) {
     visitPsiElement(o);
   }
 
@@ -179,6 +175,10 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitMedia_(@NotNull CssMedia_ o) {
+    visitPsiElement(o);
+  }
+
   public void visitNamespacePrefix(@NotNull CssNamespacePrefix o) {
     visitPsiElement(o);
   }
@@ -199,7 +199,7 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitNumber(@NotNull CssNumber o) {
+  public void visitNumber_(@NotNull CssNumber_ o) {
     visitPsiElement(o);
   }
 
@@ -207,11 +207,11 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitPage(@NotNull CssPage o) {
+  public void visitPage_(@NotNull CssPage_ o) {
     visitPsiElement(o);
   }
 
-  public void visitPercentage(@NotNull CssPercentage o) {
+  public void visitPercentage_(@NotNull CssPercentage_ o) {
     visitPsiElement(o);
   }
 
@@ -291,7 +291,7 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitUnknownDimension(@NotNull CssUnknownDimension o) {
+  public void visitUnknownDimension_(@NotNull CssUnknownDimension_ o) {
     visitPsiElement(o);
   }
 
@@ -299,7 +299,7 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitUrl(@NotNull CssUrl o) {
+  public void visitUrlWrap(@NotNull CssUrlWrap o) {
     visitPsiElement(o);
   }
 
@@ -311,7 +311,7 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitViewport(@NotNull CssViewport o) {
+  public void visitViewport_(@NotNull CssViewport_ o) {
     visitPsiElement(o);
   }
 

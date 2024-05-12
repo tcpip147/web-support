@@ -35,8 +35,8 @@ public class CssNestedStatementImpl extends ASTWrapperPsiElement implements CssN
 
   @Override
   @Nullable
-  public CssCounterStyle getCounterStyle() {
-    return findChildByClass(CssCounterStyle.class);
+  public CssCounterStyle_ getCounterStyle_() {
+    return findChildByClass(CssCounterStyle_.class);
   }
 
   @Override
@@ -59,14 +59,14 @@ public class CssNestedStatementImpl extends ASTWrapperPsiElement implements CssN
 
   @Override
   @Nullable
-  public CssMedia getMedia() {
-    return findChildByClass(CssMedia.class);
+  public CssMedia_ getMedia_() {
+    return findChildByClass(CssMedia_.class);
   }
 
   @Override
   @Nullable
-  public CssPage getPage() {
-    return findChildByClass(CssPage.class);
+  public CssPage_ getPage_() {
+    return findChildByClass(CssPage_.class);
   }
 
   @Override
@@ -83,8 +83,8 @@ public class CssNestedStatementImpl extends ASTWrapperPsiElement implements CssN
 
   @Override
   @Nullable
-  public CssViewport getViewport() {
-    return findChildByClass(CssViewport.class);
+  public CssViewport_ getViewport_() {
+    return findChildByClass(CssViewport_.class);
   }
 
 }

@@ -11,6 +11,6 @@ public interface CssPseudo extends PsiElement {
   CssFunctionalPseudo getFunctionalPseudo();
 
   @Nullable
-  CssIdent getIdent();
+  CssIdent_ getIdent_();
 
 }

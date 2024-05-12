@@ -11,7 +11,7 @@ public interface CssCalcProduct extends PsiElement {
   List<CssCalcValue> getCalcValueList();
 
   @NotNull
-  List<CssNumber> getNumberList();
+  List<CssNumber_> getNumber_List();
 
   @NotNull
   List<CssWs> getWsList();

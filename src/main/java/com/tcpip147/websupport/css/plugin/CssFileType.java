@@ -1,6 +1,5 @@
 package com.tcpip147.websupport.css.plugin;
 
-import com.intellij.lang.xml.XMLLanguage;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import com.intellij.openapi.util.IconLoader;
 import com.intellij.openapi.util.NlsContexts;

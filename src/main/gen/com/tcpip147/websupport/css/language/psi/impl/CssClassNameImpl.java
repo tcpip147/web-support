@@ -29,8 +29,8 @@ public class CssClassNameImpl extends ASTWrapperPsiElement implements CssClassNa
 
   @Override
   @NotNull
-  public CssIdent getIdent() {
-    return findNotNullChildByClass(CssIdent.class);
+  public CssIdent_ getIdent_() {
+    return findNotNullChildByClass(CssIdent_.class);
   }
 
 }

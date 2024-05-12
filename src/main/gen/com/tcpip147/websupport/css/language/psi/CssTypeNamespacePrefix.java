@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface CssTypeNamespacePrefix extends PsiElement {
 
   @Nullable
-  CssIdent getIdent();
+  CssIdent_ getIdent_();
 
 }

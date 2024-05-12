@@ -29,26 +29,26 @@ public class CssTermImpl extends ASTWrapperPsiElement implements CssTerm {
 
   @Override
   @Nullable
-  public CssCalc getCalc() {
-    return findChildByClass(CssCalc.class);
+  public CssCalc_ getCalc_() {
+    return findChildByClass(CssCalc_.class);
   }
 
   @Override
   @Nullable
-  public CssDimension getDimension() {
-    return findChildByClass(CssDimension.class);
+  public CssDimension_ getDimension_() {
+    return findChildByClass(CssDimension_.class);
   }
 
   @Override
   @Nullable
-  public CssDxImageTransform getDxImageTransform() {
-    return findChildByClass(CssDxImageTransform.class);
+  public CssDxImageTransform_ getDxImageTransform_() {
+    return findChildByClass(CssDxImageTransform_.class);
   }
 
   @Override
   @Nullable
-  public CssFunction_ getFunction_() {
-    return findChildByClass(CssFunction_.class);
+  public CssFunction getFunction() {
+    return findChildByClass(CssFunction.class);
   }
 
   @Override
@@ -59,32 +59,32 @@ public class CssTermImpl extends ASTWrapperPsiElement implements CssTerm {
 
   @Override
   @Nullable
-  public CssIdent getIdent() {
-    return findChildByClass(CssIdent.class);
+  public CssIdent_ getIdent_() {
+    return findChildByClass(CssIdent_.class);
   }
 
   @Override
   @Nullable
-  public CssNumber getNumber() {
-    return findChildByClass(CssNumber.class);
+  public CssNumber_ getNumber_() {
+    return findChildByClass(CssNumber_.class);
   }
 
   @Override
   @Nullable
-  public CssPercentage getPercentage() {
-    return findChildByClass(CssPercentage.class);
+  public CssPercentage_ getPercentage_() {
+    return findChildByClass(CssPercentage_.class);
   }
 
   @Override
   @Nullable
-  public CssUnknownDimension getUnknownDimension() {
-    return findChildByClass(CssUnknownDimension.class);
+  public CssUnknownDimension_ getUnknownDimension_() {
+    return findChildByClass(CssUnknownDimension_.class);
   }
 
   @Override
   @Nullable
-  public CssUrl getUrl() {
-    return findChildByClass(CssUrl.class);
+  public CssUrlWrap getUrlWrap() {
+    return findChildByClass(CssUrlWrap.class);
   }
 
   @Override

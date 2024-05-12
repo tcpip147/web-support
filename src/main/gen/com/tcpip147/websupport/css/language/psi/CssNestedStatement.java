@@ -11,7 +11,7 @@ public interface CssNestedStatement extends PsiElement {
   CssAtRule getAtRule();
 
   @Nullable
-  CssCounterStyle getCounterStyle();
+  CssCounterStyle_ getCounterStyle_();
 
   @Nullable
   CssFontFaceRule getFontFaceRule();
@@ -23,10 +23,10 @@ public interface CssNestedStatement extends PsiElement {
   CssKeyframesRule getKeyframesRule();
 
   @Nullable
-  CssMedia getMedia();
+  CssMedia_ getMedia_();
 
   @Nullable
-  CssPage getPage();
+  CssPage_ getPage_();
 
   @Nullable
   CssRuleset getRuleset();
@@ -35,6 +35,6 @@ public interface CssNestedStatement extends PsiElement {
   CssSupportsRule getSupportsRule();
 
   @Nullable
-  CssViewport getViewport();
+  CssViewport_ getViewport_();
 
 }

@@ -35,8 +35,8 @@ public class CssImportsImpl extends ASTWrapperPsiElement implements CssImports {
 
   @Override
   @Nullable
-  public CssUrl getUrl() {
-    return findChildByClass(CssUrl.class);
+  public CssUrlWrap getUrlWrap() {
+    return findChildByClass(CssUrlWrap.class);
   }
 
   @Override

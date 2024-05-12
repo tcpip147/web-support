@@ -35,8 +35,8 @@ public class CssPseudoImpl extends ASTWrapperPsiElement implements CssPseudo {
 
   @Override
   @Nullable
-  public CssIdent getIdent() {
-    return findChildByClass(CssIdent.class);
+  public CssIdent_ getIdent_() {
+    return findChildByClass(CssIdent_.class);
   }
 
 }

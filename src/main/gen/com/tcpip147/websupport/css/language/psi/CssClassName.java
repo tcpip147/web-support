@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface CssClassName extends PsiElement {
 
   @NotNull
-  CssIdent getIdent();
+  CssIdent_ getIdent_();
 
 }

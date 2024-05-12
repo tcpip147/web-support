@@ -8,10 +8,10 @@ import com.intellij.psi.PsiElement;
 public interface CssFeatureValueDefinition extends PsiElement {
 
   @NotNull
-  CssIdent getIdent();
+  CssIdent_ getIdent_();
 
   @NotNull
-  List<CssNumber> getNumberList();
+  List<CssNumber_> getNumber_List();
 
   @NotNull
   List<CssWs> getWsList();

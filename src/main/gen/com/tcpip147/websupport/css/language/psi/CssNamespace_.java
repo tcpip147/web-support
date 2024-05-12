@@ -11,7 +11,7 @@ public interface CssNamespace_ extends PsiElement {
   CssNamespacePrefix getNamespacePrefix();
 
   @Nullable
-  CssUrl getUrl();
+  CssUrlWrap getUrlWrap();
 
   @NotNull
   List<CssWs> getWsList();

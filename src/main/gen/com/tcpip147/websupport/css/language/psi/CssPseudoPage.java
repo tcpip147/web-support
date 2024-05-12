@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface CssPseudoPage extends PsiElement {
 
   @NotNull
-  CssIdent getIdent();
+  CssIdent_ getIdent_();
 
   @NotNull
   CssWs getWs();

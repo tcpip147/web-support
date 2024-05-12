@@ -13,88 +13,83 @@
   tokenTypeClass="com.tcpip147.websupport.css.language.psi.CssTokenType"
 }
 
-stylesheet ::= ws (charset ( Comment | Space | Cdo | Cdc)*)* (imports ( Comment | Space | Cdo | Cdc)*)* (
-               namespace_ ( Comment | Space | Cdo | Cdc)*
-               )* (nestedStatement ( Comment | Space | Cdo | Cdc)*)*
+stylesheet ::= ws (charset_ (COMMENT | SPACE | CDO | CDC)*)*
+                  ((imports | namespace_ | nestedStatement) (COMMENT | SPACE | CDO | CDC)*)* <<eof>>
 
-charset ::= Charset ws String_ ws ';' ws
-          | Charset ws String_ ws
+charset_ ::= CHARSET ws STRING_ ws ';' ws
 
-imports ::= Import ws (String_ | url) ws mediaQueryList ';' ws
-    | Import ws ( String_ | url) ws ';' ws
-    | Import ws ( String_ | url) ws mediaQueryList
-    | Import ws ( String_ | url) ws
+imports ::= IMPORT ws (STRING_ | urlWrap) ws mediaQueryList ';' ws
+          | IMPORT ws (STRING_ | urlWrap) ws ';' ws
 
-namespace_ ::= Namespace ws (namespacePrefix ws)? (String_ | url) ws ';' ws
-             | Namespace ws (namespacePrefix ws)? ( String_ | url) ws
+namespace_ ::= NAMESPACE ws (namespacePrefix ws)? (STRING_ | urlWrap) ws ';' ws
 
-namespacePrefix ::= ident
+namespacePrefix ::= ident_
 
-media ::= Media ws mediaQueryList groupRuleBody ws
+media_ ::= MEDIA ws mediaQueryList groupRuleBody ws
 
-mediaQueryList ::= (mediaQuery ( Comma ws mediaQuery)*)? ws
+mediaQueryList ::= (mediaQuery ( COMMA ws mediaQuery)*)? ws
 
-mediaQuery ::= (MediaOnly | Not)? ws mediaType ws (And ws mediaExpression)*
-             | mediaExpression ( And ws mediaExpression)*
+mediaQuery ::= (MEDIA_ONLY | NOT)? ws mediaType ws (AND ws mediaExpression)*
+             | mediaExpression ( AND ws mediaExpression)*
 
-mediaType ::= ident
+mediaType ::= ident_
 
 mediaExpression ::= '(' ws mediaFeature (':' ws expr)? ')' ws
 
-mediaFeature ::= ident ws
+mediaFeature ::= ident_ ws
 
-page ::= Page ws pseudoPage? '{' ws declaration? (';' ws declaration?)* '}' ws
+page_ ::= PAGE ws pseudoPage? '{' ws declaration? (';' ws declaration?)* '}' ws
 
-pseudoPage ::= ':' ident ws
+pseudoPage ::= ':' ident_ ws
 
-selectorGroup ::= selector (Comma ws selector)*
+selectorGroup ::= selector (COMMA ws selector)*
 
 selector ::= simpleSelectorSequence ws (combinator simpleSelectorSequence ws)*
 
-combinator ::= Plus ws
-             | Greater ws
-             | Tilde ws
-             | Space ws
+combinator ::= PLUS ws
+    | GREATER ws
+    | TILDE ws
+    | SPACE ws
 
-simpleSelectorSequence ::= (typeSelector | universal) (Hash | sclassName | attrib | pseudo | negation)*
-                         | ( Hash | className | attrib | pseudo | negation)+
+simpleSelectorSequence ::= (typeSelector | universal) (HASH | className | attrib | pseudo | negation)*
+                         | ( HASH | className | attrib | pseudo | negation)+
 
 typeSelector ::= typeNamespacePrefix? elementName
 
-typeNamespacePrefix ::= (ident | '*')? '|'
+typeNamespacePrefix ::= (ident_ | '*')? '|'
 
-elementName ::= ident
+elementName ::= ident_
 
 universal ::= typeNamespacePrefix? '*'
 
-className ::= '.' ident
+className ::= '.' ident_
 
-attrib ::= '[' ws typeNamespacePrefix? ident ws ( (PrefixMatch | SuffixMatch | SubstringMatch | '=' | Includes | DashMatch) ws ( ident | String_ ) ws )? ']'
+attrib ::= '[' ws typeNamespacePrefix? ident_ ws ((PREFIX_MATCH | SUFFIX_MATCH | SUBSTRING_MATCH | '=' | INCLUDES | DASH_MATCH) ws (ident_ | STRING_) ws)? ('i'|'s')? ws? ']'
 
-pseudo ::= ':' ':'? (ident | functionalPseudo)
+pseudo ::= ':' ':'? (ident_ | functionalPseudo)
 
-functionalPseudo ::= Function_ ws expression ')'
+functionalPseudo ::= FUNCTION_ ws expression ')'
 
-expression ::= (( Plus | Minus | Dimension | UnknownDimension | Number | String_ | ident) ws)+
+expression ::= (( PLUS | MINUS | DIMENSION | UNKNOWN_DIMENSION | NUMBER | STRING_ | ident_) ws)+
 
-negation ::= PseudoNot ws negationArg ws ')'
+negation ::= PSEUDO_NOT ws negationArg ws ')'
 
 negationArg ::= typeSelector
-              | universal
-              | Hash
-              | className
-              | attrib
-              | pseudo
+    | universal
+    | HASH
+    | className
+    | attrib
+    | pseudo
 
 operator_ ::= '/' ws
-            | Comma ws
-            | Space ws
-            | '=' ws
+    | COMMA ws
+    | SPACE ws
+    | '=' ws
 
-property_ ::= ident ws
-            | Variable ws
-            | '*' ident
-            | '_' ident
+property_ ::= ident_ ws
+    | VARIABLE ws
+    | '*' ident_
+    | '_' ident_
 
 ruleset ::= selectorGroup '{' ws declarationList? '}' ws
           | any_* '{' ws declarationList? '}' ws
@@ -104,80 +99,80 @@ declarationList ::= (';' ws)* declaration ws (';' ws declaration?)*
 declaration ::= property_ ':' ws expr prio?
               | property_ ':' ws value
 
-prio ::= Important ws
+prio ::= IMPORTANT ws
 
-value ::= (any_ | block | AtKeyword ws)+
+value ::= (any_ | block | AT_KEYWORD ws)+
 
 expr ::= term (operator_? term)*
 
-term ::= number ws
-       | percentage ws
-       | dimension ws
-       | String_ ws
-       | UnicodeRange ws
-       | ident ws
+term ::= number_ ws
+       | percentage_ ws
+       | dimension_ ws
+       | STRING_ ws
+       | UNICODE_RANGE ws
+       | ident_ ws
        | var_
-       | url ws
+       | urlWrap ws
        | hexcolor
-       | calc
-       | function_
-       | unknownDimension ws
-       | dxImageTransform
+       | calc_
+       | function
+       | unknownDimension_ ws
+       | dxImageTransform_
 
-function_ ::= Function_ ws expr ')' ws
+function ::= FUNCTION_ ws expr ')' ws
 
-dxImageTransform ::= DxImageTransform ws expr ')' ws
+dxImageTransform_ ::= DX_IMAGE_TRANSFORM ws expr ')' ws
 
-hexcolor ::= Hash ws
+hexcolor ::= HASH ws
 
-number ::= (Plus | Minus)? Number
+number_ ::= (PLUS | MINUS)? NUMBER
 
-percentage ::= (Plus | Minus)? Percentage
+percentage_ ::= (PLUS | MINUS)? PERCENTAGE
 
-dimension ::= (Plus | Minus)? Dimension
+dimension_ ::= (PLUS | MINUS)? DIMENSION
 
-unknownDimension ::= (Plus | Minus)? UnknownDimension
+unknownDimension_ ::= (PLUS | MINUS)? UNKNOWN_DIMENSION
 
-any_ ::= ident ws
-       | number ws
-       | percentage ws
-       | dimension ws
-       | unknownDimension ws
-       | String_ ws
-       | url ws
-       | Hash ws
-       | UnicodeRange ws
-       | Includes ws
-       | DashMatch ws
+any_ ::= ident_ ws
+       | number_ ws
+       | percentage_ ws
+       | dimension_ ws
+       | unknownDimension_ ws
+       | STRING_ ws
+       | urlWrap ws
+       | HASH ws
+       | UNICODE_RANGE ws
+       | INCLUDES ws
+       | DASH_MATCH ws
        | ':' ws
-       | Function_ ws ( any_ | unused)* ')' ws
+       | FUNCTION_ ws ( any_ | unused)* ')' ws
        | '(' ws ( any_ | unused)* ')' ws
        | '[' ws ( any_ | unused)* ']' ws
 
-atRule ::= AtKeyword ws any_* (block | ';' ws)
+atRule ::= AT_KEYWORD ws any_* (block | ';' ws)
 
 unused ::= block
-         | AtKeyword ws
+         | AT_KEYWORD ws
          | ';' ws
-         | Cdo ws
-         | Cdc ws
+         | CDO ws
+         | CDC ws
 
-block ::= '{' ws (declarationList | nestedStatement | any_ | block | AtKeyword ws | ';' ws)* '}' ws
+block ::= '{' ws (declarationList | nestedStatement | any_ | block | AT_KEYWORD ws | ';' ws)* '}' ws
 
 nestedStatement ::= ruleset
-                  | media
-                  | page
+                  | media_
+                  | page_
                   | fontFaceRule
                   | keyframesRule
                   | supportsRule
-                  | viewport
-                  | counterStyle
+                  | viewport_
+                  | counterStyle_
                   | fontFeatureValuesRule
                   | atRule
 
 groupRuleBody ::= '{' ws nestedStatement* '}' ws
 
-supportsRule ::= Supports ws supportsCondition ws groupRuleBody
+supportsRule ::= SUPPORTS ws supportsCondition ws groupRuleBody
 
 supportsCondition ::= supportsNegation
                     | supportsConjunction
@@ -188,67 +183,65 @@ supportsConditionInParens ::= '(' ws supportsCondition ws ')'
                             | supportsDeclarationCondition
                             | generalEnclosed
 
-supportsNegation ::= Not ws Space ws supportsConditionInParens
+supportsNegation ::= NOT ws SPACE ws supportsConditionInParens
 
-supportsConjunction ::= supportsConditionInParens (ws Space ws And ws Space ws supportsConditionInParens)+
+supportsConjunction ::= supportsConditionInParens (ws SPACE ws AND ws SPACE ws supportsConditionInParens)+
 
-supportsDisjunction ::= supportsConditionInParens (ws Space ws Or ws Space ws supportsConditionInParens)+
+supportsDisjunction ::= supportsConditionInParens (ws SPACE ws OR ws SPACE ws supportsConditionInParens)+
 
 supportsDeclarationCondition ::= '(' ws declaration ')'
 
-generalEnclosed ::= (Function_ | '(') (any_ | unused)* ')'
+generalEnclosed ::= (FUNCTION_ | '(') (any_ | unused)* ')'
 
-url ::= Url_ ws String_ ws ')'
-      | Url
+urlWrap ::= URL_ ws STRING_ ws ')' | URL
 
-var_ ::= Var ws Variable ws ')' ws
+var_ ::= VAR ws VARIABLE ws ')' ws
 
-calc ::= Calc ws calcSum ')' ws
+calc_ ::= CALC ws calcSum ')' ws
 
-calcSum ::= calcProduct (Space ws ( Plus | Minus) ws Space ws calcProduct)*
+calcSum ::= calcProduct (SPACE ws ( PLUS | MINUS) ws SPACE ws calcProduct)*
 
-calcProduct ::= calcValue ('*' ws calcValue | '/' ws number ws)*
+calcProduct ::= calcValue ('*' ws calcValue | '/' ws number_ ws)*
 
-calcValue ::= number ws
-            | dimension ws
-            | unknownDimension ws
-            | percentage ws
+calcValue ::= number_ ws
+            | dimension_ ws
+            | unknownDimension_ ws
+            | percentage_ ws
             | '(' ws calcSum ')' ws
 
-fontFaceRule ::= FontFace ws '{' ws fontFaceDeclaration? (';' ws fontFaceDeclaration?)* '}' ws
+fontFaceRule ::= FONT_FACE ws '{' ws fontFaceDeclaration? (';' ws fontFaceDeclaration?)* '}' ws
 
 fontFaceDeclaration ::= property_ ':' ws expr
                       | property_ ':' ws value
 
-keyframesRule ::= Keyframes ws Space ws ident ws '{' ws keyframeBlock* '}' ws
+keyframesRule ::= KEY_FRAMES ws SPACE ws ident_ ws '{' ws keyframeBlock* '}' ws
 
 keyframeBlock ::= (keyframeSelector '{' ws declarationList? '}' ws)
 
-keyframeSelector ::= (From | To | Percentage) ws (Comma ws ( From | To | Percentage) ws)*
+keyframeSelector ::= (FROM | TO | PERCENTAGE) ws (COMMA ws ( FROM | TO | PERCENTAGE) ws)*
 
-viewport ::= Viewport ws '{' ws declarationList? '}' ws
+viewport_ ::= VIEWPORT ws '{' ws declarationList? '}' ws
 
-counterStyle ::= CounterStyle ws ident ws '{' ws declarationList? '}' ws
+counterStyle_ ::= COUNTER_STYLE ws ident_ ws '{' ws declarationList? '}' ws
 
-fontFeatureValuesRule ::= FontFeatureValues ws fontFamilyNameList ws '{' ws featureValueBlock* '}' ws
+fontFeatureValuesRule ::= FONT_FEATURE_VALUES ws fontFamilyNameList ws '{' ws featureValueBlock* '}' ws
 
-fontFamilyNameList ::= fontFamilyName (ws Comma ws fontFamilyName)*
+fontFamilyNameList ::= fontFamilyName (ws COMMA ws fontFamilyName)*
 
-fontFamilyName ::= String_
-                 | ident ( ws ident)*
+fontFamilyName ::= STRING_ | ident_ ( ws ident_)*
 
 featureValueBlock ::= featureType ws '{' ws featureValueDefinition? (ws ';' ws featureValueDefinition?)* '}' ws
 
-featureType ::= AtKeyword
+featureType ::= AT_KEYWORD
 
-featureValueDefinition ::= ident ws ':' ws number (ws number)*
+featureValueDefinition ::= ident_ ws ':' ws number_ (ws number_)*
 
-ident ::= Ident
-        | MediaOnly
-        | Not
-        | And
-        | Or
-        | From
-        | To
+ident_ ::= IDENT
+        | MEDIA_ONLY
+        | NOT
+        | AND
+        | OR
+        | FROM
+        | TO
 
-ws ::= (Comment | Space)*
+ws ::= (COMMENT | SPACE)*

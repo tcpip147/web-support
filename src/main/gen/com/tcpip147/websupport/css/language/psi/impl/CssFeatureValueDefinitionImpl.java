@@ -29,14 +29,14 @@ public class CssFeatureValueDefinitionImpl extends ASTWrapperPsiElement implemen
 
   @Override
   @NotNull
-  public CssIdent getIdent() {
-    return findNotNullChildByClass(CssIdent.class);
+  public CssIdent_ getIdent_() {
+    return findNotNullChildByClass(CssIdent_.class);
   }
 
   @Override
   @NotNull
-  public List<CssNumber> getNumberList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, CssNumber.class);
+  public List<CssNumber_> getNumber_List() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, CssNumber_.class);
   }
 
   @Override

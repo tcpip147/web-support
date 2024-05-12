@@ -35,32 +35,32 @@ public class CssAny_Impl extends ASTWrapperPsiElement implements CssAny_ {
 
   @Override
   @Nullable
-  public CssDimension getDimension() {
-    return findChildByClass(CssDimension.class);
+  public CssDimension_ getDimension_() {
+    return findChildByClass(CssDimension_.class);
   }
 
   @Override
   @Nullable
-  public CssIdent getIdent() {
-    return findChildByClass(CssIdent.class);
+  public CssIdent_ getIdent_() {
+    return findChildByClass(CssIdent_.class);
   }
 
   @Override
   @Nullable
-  public CssNumber getNumber() {
-    return findChildByClass(CssNumber.class);
+  public CssNumber_ getNumber_() {
+    return findChildByClass(CssNumber_.class);
   }
 
   @Override
   @Nullable
-  public CssPercentage getPercentage() {
-    return findChildByClass(CssPercentage.class);
+  public CssPercentage_ getPercentage_() {
+    return findChildByClass(CssPercentage_.class);
   }
 
   @Override
   @Nullable
-  public CssUnknownDimension getUnknownDimension() {
-    return findChildByClass(CssUnknownDimension.class);
+  public CssUnknownDimension_ getUnknownDimension_() {
+    return findChildByClass(CssUnknownDimension_.class);
   }
 
   @Override
@@ -71,8 +71,8 @@ public class CssAny_Impl extends ASTWrapperPsiElement implements CssAny_ {
 
   @Override
   @Nullable
-  public CssUrl getUrl() {
-    return findChildByClass(CssUrl.class);
+  public CssUrlWrap getUrlWrap() {
+    return findChildByClass(CssUrlWrap.class);
   }
 
   @Override

@@ -36,19 +36,19 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ident ws
-  //        | number ws
-  //        | percentage ws
-  //        | dimension ws
-  //        | unknownDimension ws
-  //        | String_ ws
-  //        | url ws
-  //        | Hash ws
-  //        | UnicodeRange ws
-  //        | Includes ws
-  //        | DashMatch ws
+  // ident_ ws
+  //        | number_ ws
+  //        | percentage_ ws
+  //        | dimension_ ws
+  //        | unknownDimension_ ws
+  //        | STRING_ ws
+  //        | urlWrap ws
+  //        | HASH ws
+  //        | UNICODE_RANGE ws
+  //        | INCLUDES ws
+  //        | DASH_MATCH ws
   //        | ':' ws
-  //        | Function_ ws ( any_ | unused)* ')' ws
+  //        | FUNCTION_ ws ( any_ | unused)* ')' ws
   //        | '(' ws ( any_ | unused)* ')' ws
   //        | '[' ws ( any_ | unused)* ']' ws
   public static boolean any_(PsiBuilder b, int l) {
@@ -74,62 +74,62 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ident ws
+  // ident_ ws
   private static boolean any__0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // number ws
+  // number_ ws
   private static boolean any__1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = number(b, l + 1);
+    r = number_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // percentage ws
+  // percentage_ ws
   private static boolean any__2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__2")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = percentage(b, l + 1);
+    r = percentage_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // dimension ws
+  // dimension_ ws
   private static boolean any__3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__3")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = dimension(b, l + 1);
+    r = dimension_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // unknownDimension ws
+  // unknownDimension_ ws
   private static boolean any__4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__4")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = unknownDimension(b, l + 1);
+    r = unknownDimension_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // String_ ws
+  // STRING_ ws
   private static boolean any__5(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__5")) return false;
     boolean r;
@@ -140,18 +140,18 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // url ws
+  // urlWrap ws
   private static boolean any__6(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__6")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = url(b, l + 1);
+    r = urlWrap(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // Hash ws
+  // HASH ws
   private static boolean any__7(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__7")) return false;
     boolean r;
@@ -162,18 +162,18 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // UnicodeRange ws
+  // UNICODE_RANGE ws
   private static boolean any__8(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__8")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, UNICODERANGE);
+    r = consumeToken(b, UNICODE_RANGE);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // Includes ws
+  // INCLUDES ws
   private static boolean any__9(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__9")) return false;
     boolean r;
@@ -184,12 +184,12 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // DashMatch ws
+  // DASH_MATCH ws
   private static boolean any__10(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__10")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, DASHMATCH);
+    r = consumeToken(b, DASH_MATCH);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
@@ -206,7 +206,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Function_ ws ( any_ | unused)* ')' ws
+  // FUNCTION_ ws ( any_ | unused)* ')' ws
   private static boolean any__12(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "any__12")) return false;
     boolean r;
@@ -309,13 +309,13 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // AtKeyword ws any_* (block | ';' ws)
+  // AT_KEYWORD ws any_* (block | ';' ws)
   public static boolean atRule(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "atRule")) return false;
-    if (!nextTokenIs(b, ATKEYWORD)) return false;
+    if (!nextTokenIs(b, AT_KEYWORD)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, ATKEYWORD);
+    r = consumeToken(b, AT_KEYWORD);
     r = r && ws(b, l + 1);
     r = r && atRule_2(b, l + 1);
     r = r && atRule_3(b, l + 1);
@@ -357,7 +357,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '[' ws typeNamespacePrefix? ident ws ( (PrefixMatch | SuffixMatch | SubstringMatch | '=' | Includes | DashMatch) ws ( ident | String_ ) ws )? ']'
+  // '[' ws typeNamespacePrefix? ident_ ws ((PREFIX_MATCH | SUFFIX_MATCH | SUBSTRING_MATCH | '=' | INCLUDES | DASH_MATCH) ws (ident_ | STRING_) ws)? ('i'|'s')? ws? ']'
   public static boolean attrib(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "attrib")) return false;
     boolean r;
@@ -365,9 +365,11 @@ public class CssParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, "[");
     r = r && ws(b, l + 1);
     r = r && attrib_2(b, l + 1);
-    r = r && ident(b, l + 1);
+    r = r && ident_(b, l + 1);
     r = r && ws(b, l + 1);
     r = r && attrib_5(b, l + 1);
+    r = r && attrib_6(b, l + 1);
+    r = r && attrib_7(b, l + 1);
     r = r && consumeToken(b, "]");
     exit_section_(b, l, m, r, false, null);
     return r;
@@ -380,14 +382,14 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // ( (PrefixMatch | SuffixMatch | SubstringMatch | '=' | Includes | DashMatch) ws ( ident | String_ ) ws )?
+  // ((PREFIX_MATCH | SUFFIX_MATCH | SUBSTRING_MATCH | '=' | INCLUDES | DASH_MATCH) ws (ident_ | STRING_) ws)?
   private static boolean attrib_5(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "attrib_5")) return false;
     attrib_5_0(b, l + 1);
     return true;
   }
 
-  // (PrefixMatch | SuffixMatch | SubstringMatch | '=' | Includes | DashMatch) ws ( ident | String_ ) ws
+  // (PREFIX_MATCH | SUFFIX_MATCH | SUBSTRING_MATCH | '=' | INCLUDES | DASH_MATCH) ws (ident_ | STRING_) ws
   private static boolean attrib_5_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "attrib_5_0")) return false;
     boolean r;
@@ -400,30 +402,53 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // PrefixMatch | SuffixMatch | SubstringMatch | '=' | Includes | DashMatch
+  // PREFIX_MATCH | SUFFIX_MATCH | SUBSTRING_MATCH | '=' | INCLUDES | DASH_MATCH
   private static boolean attrib_5_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "attrib_5_0_0")) return false;
     boolean r;
-    r = consumeToken(b, PREFIXMATCH);
-    if (!r) r = consumeToken(b, SUFFIXMATCH);
-    if (!r) r = consumeToken(b, SUBSTRINGMATCH);
+    r = consumeToken(b, PREFIX_MATCH);
+    if (!r) r = consumeToken(b, SUFFIX_MATCH);
+    if (!r) r = consumeToken(b, SUBSTRING_MATCH);
     if (!r) r = consumeToken(b, "=");
     if (!r) r = consumeToken(b, INCLUDES);
-    if (!r) r = consumeToken(b, DASHMATCH);
+    if (!r) r = consumeToken(b, DASH_MATCH);
     return r;
   }
 
-  // ident | String_
+  // ident_ | STRING_
   private static boolean attrib_5_0_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "attrib_5_0_2")) return false;
     boolean r;
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     if (!r) r = consumeToken(b, STRING_);
     return r;
   }
 
+  // ('i'|'s')?
+  private static boolean attrib_6(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "attrib_6")) return false;
+    attrib_6_0(b, l + 1);
+    return true;
+  }
+
+  // 'i'|'s'
+  private static boolean attrib_6_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "attrib_6_0")) return false;
+    boolean r;
+    r = consumeToken(b, "i");
+    if (!r) r = consumeToken(b, "s");
+    return r;
+  }
+
+  // ws?
+  private static boolean attrib_7(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "attrib_7")) return false;
+    ws(b, l + 1);
+    return true;
+  }
+
   /* ********************************************************** */
-  // '{' ws (declarationList | nestedStatement | any_ | block | AtKeyword ws | ';' ws)* '}' ws
+  // '{' ws (declarationList | nestedStatement | any_ | block | AT_KEYWORD ws | ';' ws)* '}' ws
   public static boolean block(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "block")) return false;
     boolean r;
@@ -437,7 +462,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (declarationList | nestedStatement | any_ | block | AtKeyword ws | ';' ws)*
+  // (declarationList | nestedStatement | any_ | block | AT_KEYWORD ws | ';' ws)*
   private static boolean block_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "block_2")) return false;
     while (true) {
@@ -448,7 +473,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // declarationList | nestedStatement | any_ | block | AtKeyword ws | ';' ws
+  // declarationList | nestedStatement | any_ | block | AT_KEYWORD ws | ';' ws
   private static boolean block_2_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "block_2_0")) return false;
     boolean r;
@@ -463,12 +488,12 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // AtKeyword ws
+  // AT_KEYWORD ws
   private static boolean block_2_0_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "block_2_0_4")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, ATKEYWORD);
+    r = consumeToken(b, AT_KEYWORD);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
@@ -486,23 +511,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Calc ws calcSum ')' ws
-  public static boolean calc(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "calc")) return false;
-    if (!nextTokenIs(b, CALC)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, CALC);
-    r = r && ws(b, l + 1);
-    r = r && calcSum(b, l + 1);
-    r = r && consumeToken(b, ")");
-    r = r && ws(b, l + 1);
-    exit_section_(b, m, CALC, r);
-    return r;
-  }
-
-  /* ********************************************************** */
-  // calcValue ('*' ws calcValue | '/' ws number ws)*
+  // calcValue ('*' ws calcValue | '/' ws number_ ws)*
   public static boolean calcProduct(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcProduct")) return false;
     boolean r;
@@ -513,7 +522,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ('*' ws calcValue | '/' ws number ws)*
+  // ('*' ws calcValue | '/' ws number_ ws)*
   private static boolean calcProduct_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcProduct_1")) return false;
     while (true) {
@@ -524,7 +533,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // '*' ws calcValue | '/' ws number ws
+  // '*' ws calcValue | '/' ws number_ ws
   private static boolean calcProduct_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcProduct_1_0")) return false;
     boolean r;
@@ -547,21 +556,21 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // '/' ws number ws
+  // '/' ws number_ ws
   private static boolean calcProduct_1_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcProduct_1_0_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, "/");
     r = r && ws(b, l + 1);
-    r = r && number(b, l + 1);
+    r = r && number_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // calcProduct (Space ws ( Plus | Minus) ws Space ws calcProduct)*
+  // calcProduct (SPACE ws ( PLUS | MINUS) ws SPACE ws calcProduct)*
   public static boolean calcSum(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcSum")) return false;
     boolean r;
@@ -572,7 +581,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (Space ws ( Plus | Minus) ws Space ws calcProduct)*
+  // (SPACE ws ( PLUS | MINUS) ws SPACE ws calcProduct)*
   private static boolean calcSum_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcSum_1")) return false;
     while (true) {
@@ -583,7 +592,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // Space ws ( Plus | Minus) ws Space ws calcProduct
+  // SPACE ws ( PLUS | MINUS) ws SPACE ws calcProduct
   private static boolean calcSum_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcSum_1_0")) return false;
     boolean r;
@@ -599,7 +608,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Plus | Minus
+  // PLUS | MINUS
   private static boolean calcSum_1_0_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcSum_1_0_2")) return false;
     boolean r;
@@ -609,10 +618,10 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // number ws
-  //             | dimension ws
-  //             | unknownDimension ws
-  //             | percentage ws
+  // number_ ws
+  //             | dimension_ ws
+  //             | unknownDimension_ ws
+  //             | percentage_ ws
   //             | '(' ws calcSum ')' ws
   public static boolean calcValue(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcValue")) return false;
@@ -627,45 +636,45 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // number ws
+  // number_ ws
   private static boolean calcValue_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcValue_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = number(b, l + 1);
+    r = number_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // dimension ws
+  // dimension_ ws
   private static boolean calcValue_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcValue_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = dimension(b, l + 1);
+    r = dimension_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // unknownDimension ws
+  // unknownDimension_ ws
   private static boolean calcValue_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcValue_2")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = unknownDimension(b, l + 1);
+    r = unknownDimension_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // percentage ws
+  // percentage_ ws
   private static boolean calcValue_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "calcValue_3")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = percentage(b, l + 1);
+    r = percentage_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
@@ -686,22 +695,26 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Charset ws String_ ws ';' ws
-  //           | Charset ws String_ ws
-  public static boolean charset(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "charset")) return false;
-    if (!nextTokenIs(b, CHARSET)) return false;
+  // CALC ws calcSum ')' ws
+  public static boolean calc_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "calc_")) return false;
+    if (!nextTokenIs(b, CALC)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = charset_0(b, l + 1);
-    if (!r) r = charset_1(b, l + 1);
-    exit_section_(b, m, CHARSET, r);
+    r = consumeToken(b, CALC);
+    r = r && ws(b, l + 1);
+    r = r && calcSum(b, l + 1);
+    r = r && consumeToken(b, ")");
+    r = r && ws(b, l + 1);
+    exit_section_(b, m, CALC_, r);
     return r;
   }
 
-  // Charset ws String_ ws ';' ws
-  private static boolean charset_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "charset_0")) return false;
+  /* ********************************************************** */
+  // CHARSET ws STRING_ ws ';' ws
+  public static boolean charset_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "charset_")) return false;
+    if (!nextTokenIs(b, CHARSET)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, CHARSET);
@@ -710,40 +723,27 @@ public class CssParser implements PsiParser, LightPsiParser {
     r = r && ws(b, l + 1);
     r = r && consumeToken(b, ";");
     r = r && ws(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // Charset ws String_ ws
-  private static boolean charset_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "charset_1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, CHARSET);
-    r = r && ws(b, l + 1);
-    r = r && consumeToken(b, STRING_);
-    r = r && ws(b, l + 1);
-    exit_section_(b, m, null, r);
+    exit_section_(b, m, CHARSET_, r);
     return r;
   }
 
   /* ********************************************************** */
-  // '.' ident
+  // '.' ident_
   public static boolean className(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "className")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, CLASS_NAME, "<class name>");
     r = consumeToken(b, ".");
-    r = r && ident(b, l + 1);
+    r = r && ident_(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   /* ********************************************************** */
-  // Plus ws
-  //              | Greater ws
-  //              | Tilde ws
-  //              | Space ws
+  // PLUS ws
+  //     | GREATER ws
+  //     | TILDE ws
+  //     | SPACE ws
   public static boolean combinator(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "combinator")) return false;
     boolean r;
@@ -756,7 +756,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Plus ws
+  // PLUS ws
   private static boolean combinator_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "combinator_0")) return false;
     boolean r;
@@ -767,7 +767,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Greater ws
+  // GREATER ws
   private static boolean combinator_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "combinator_1")) return false;
     boolean r;
@@ -778,7 +778,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Tilde ws
+  // TILDE ws
   private static boolean combinator_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "combinator_2")) return false;
     boolean r;
@@ -789,7 +789,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Space ws
+  // SPACE ws
   private static boolean combinator_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "combinator_3")) return false;
     boolean r;
@@ -801,28 +801,28 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // CounterStyle ws ident ws '{' ws declarationList? '}' ws
-  public static boolean counterStyle(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "counterStyle")) return false;
-    if (!nextTokenIs(b, COUNTERSTYLE)) return false;
+  // COUNTER_STYLE ws ident_ ws '{' ws declarationList? '}' ws
+  public static boolean counterStyle_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "counterStyle_")) return false;
+    if (!nextTokenIs(b, COUNTER_STYLE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, COUNTERSTYLE);
+    r = consumeToken(b, COUNTER_STYLE);
     r = r && ws(b, l + 1);
-    r = r && ident(b, l + 1);
+    r = r && ident_(b, l + 1);
     r = r && ws(b, l + 1);
     r = r && consumeToken(b, "{");
     r = r && ws(b, l + 1);
-    r = r && counterStyle_6(b, l + 1);
+    r = r && counterStyle__6(b, l + 1);
     r = r && consumeToken(b, "}");
     r = r && ws(b, l + 1);
-    exit_section_(b, m, COUNTER_STYLE, r);
+    exit_section_(b, m, COUNTER_STYLE_, r);
     return r;
   }
 
   // declarationList?
-  private static boolean counterStyle_6(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "counterStyle_6")) return false;
+  private static boolean counterStyle__6(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "counterStyle__6")) return false;
     declarationList(b, l + 1);
     return true;
   }
@@ -941,27 +941,27 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (Plus | Minus)? Dimension
-  public static boolean dimension(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "dimension")) return false;
+  // (PLUS | MINUS)? DIMENSION
+  public static boolean dimension_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "dimension_")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, DIMENSION, "<dimension>");
-    r = dimension_0(b, l + 1);
+    Marker m = enter_section_(b, l, _NONE_, DIMENSION_, "<dimension>");
+    r = dimension__0(b, l + 1);
     r = r && consumeToken(b, DIMENSION);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
-  // (Plus | Minus)?
-  private static boolean dimension_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "dimension_0")) return false;
-    dimension_0_0(b, l + 1);
+  // (PLUS | MINUS)?
+  private static boolean dimension__0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "dimension__0")) return false;
+    dimension__0_0(b, l + 1);
     return true;
   }
 
-  // Plus | Minus
-  private static boolean dimension_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "dimension_0_0")) return false;
+  // PLUS | MINUS
+  private static boolean dimension__0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "dimension__0_0")) return false;
     boolean r;
     r = consumeToken(b, PLUS);
     if (!r) r = consumeToken(b, MINUS);
@@ -969,28 +969,28 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // DxImageTransform ws expr ')' ws
-  public static boolean dxImageTransform(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "dxImageTransform")) return false;
-    if (!nextTokenIs(b, DXIMAGETRANSFORM)) return false;
+  // DX_IMAGE_TRANSFORM ws expr ')' ws
+  public static boolean dxImageTransform_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "dxImageTransform_")) return false;
+    if (!nextTokenIs(b, DX_IMAGE_TRANSFORM)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, DXIMAGETRANSFORM);
+    r = consumeToken(b, DX_IMAGE_TRANSFORM);
     r = r && ws(b, l + 1);
     r = r && expr(b, l + 1);
     r = r && consumeToken(b, ")");
     r = r && ws(b, l + 1);
-    exit_section_(b, m, DX_IMAGE_TRANSFORM, r);
+    exit_section_(b, m, DX_IMAGE_TRANSFORM_, r);
     return r;
   }
 
   /* ********************************************************** */
-  // ident
+  // ident_
   public static boolean elementName(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "elementName")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, ELEMENT_NAME, "<element name>");
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -1037,7 +1037,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (( Plus | Minus | Dimension | UnknownDimension | Number | String_ | ident) ws)+
+  // (( PLUS | MINUS | DIMENSION | UNKNOWN_DIMENSION | NUMBER | STRING_ | ident_) ws)+
   public static boolean expression(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "expression")) return false;
     boolean r;
@@ -1052,7 +1052,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( Plus | Minus | Dimension | UnknownDimension | Number | String_ | ident) ws
+  // ( PLUS | MINUS | DIMENSION | UNKNOWN_DIMENSION | NUMBER | STRING_ | ident_) ws
   private static boolean expression_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "expression_0")) return false;
     boolean r;
@@ -1063,28 +1063,28 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Plus | Minus | Dimension | UnknownDimension | Number | String_ | ident
+  // PLUS | MINUS | DIMENSION | UNKNOWN_DIMENSION | NUMBER | STRING_ | ident_
   private static boolean expression_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "expression_0_0")) return false;
     boolean r;
     r = consumeToken(b, PLUS);
     if (!r) r = consumeToken(b, MINUS);
     if (!r) r = consumeToken(b, DIMENSION);
-    if (!r) r = consumeToken(b, UNKNOWNDIMENSION);
+    if (!r) r = consumeToken(b, UNKNOWN_DIMENSION);
     if (!r) r = consumeToken(b, NUMBER);
     if (!r) r = consumeToken(b, STRING_);
-    if (!r) r = ident(b, l + 1);
+    if (!r) r = ident_(b, l + 1);
     return r;
   }
 
   /* ********************************************************** */
-  // AtKeyword
+  // AT_KEYWORD
   public static boolean featureType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "featureType")) return false;
-    if (!nextTokenIs(b, ATKEYWORD)) return false;
+    if (!nextTokenIs(b, AT_KEYWORD)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, ATKEYWORD);
+    r = consumeToken(b, AT_KEYWORD);
     exit_section_(b, m, FEATURE_TYPE, r);
     return r;
   }
@@ -1093,7 +1093,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   // featureType ws '{' ws featureValueDefinition? (ws ';' ws featureValueDefinition?)* '}' ws
   public static boolean featureValueBlock(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "featureValueBlock")) return false;
-    if (!nextTokenIs(b, ATKEYWORD)) return false;
+    if (!nextTokenIs(b, AT_KEYWORD)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = featureType(b, l + 1);
@@ -1147,22 +1147,22 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ident ws ':' ws number (ws number)*
+  // ident_ ws ':' ws number_ (ws number_)*
   public static boolean featureValueDefinition(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "featureValueDefinition")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, FEATURE_VALUE_DEFINITION, "<feature value definition>");
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     r = r && ws(b, l + 1);
     r = r && consumeToken(b, ":");
     r = r && ws(b, l + 1);
-    r = r && number(b, l + 1);
+    r = r && number_(b, l + 1);
     r = r && featureValueDefinition_5(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
-  // (ws number)*
+  // (ws number_)*
   private static boolean featureValueDefinition_5(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "featureValueDefinition_5")) return false;
     while (true) {
@@ -1173,13 +1173,13 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // ws number
+  // ws number_
   private static boolean featureValueDefinition_5_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "featureValueDefinition_5_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = ws(b, l + 1);
-    r = r && number(b, l + 1);
+    r = r && number_(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -1224,13 +1224,13 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // FontFace ws '{' ws fontFaceDeclaration? (';' ws fontFaceDeclaration?)* '}' ws
+  // FONT_FACE ws '{' ws fontFaceDeclaration? (';' ws fontFaceDeclaration?)* '}' ws
   public static boolean fontFaceRule(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fontFaceRule")) return false;
-    if (!nextTokenIs(b, FONTFACE)) return false;
+    if (!nextTokenIs(b, FONT_FACE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, FONTFACE);
+    r = consumeToken(b, FONT_FACE);
     r = r && ws(b, l + 1);
     r = r && consumeToken(b, "{");
     r = r && ws(b, l + 1);
@@ -1280,8 +1280,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // String_
-  //                  | ident ( ws ident)*
+  // STRING_ | ident_ ( ws ident_)*
   public static boolean fontFamilyName(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fontFamilyName")) return false;
     boolean r;
@@ -1292,18 +1291,18 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ident ( ws ident)*
+  // ident_ ( ws ident_)*
   private static boolean fontFamilyName_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fontFamilyName_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     r = r && fontFamilyName_1_1(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // ( ws ident)*
+  // ( ws ident_)*
   private static boolean fontFamilyName_1_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fontFamilyName_1_1")) return false;
     while (true) {
@@ -1314,19 +1313,19 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // ws ident
+  // ws ident_
   private static boolean fontFamilyName_1_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fontFamilyName_1_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = ws(b, l + 1);
-    r = r && ident(b, l + 1);
+    r = r && ident_(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // fontFamilyName (ws Comma ws fontFamilyName)*
+  // fontFamilyName (ws COMMA ws fontFamilyName)*
   public static boolean fontFamilyNameList(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fontFamilyNameList")) return false;
     boolean r;
@@ -1337,7 +1336,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (ws Comma ws fontFamilyName)*
+  // (ws COMMA ws fontFamilyName)*
   private static boolean fontFamilyNameList_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fontFamilyNameList_1")) return false;
     while (true) {
@@ -1348,7 +1347,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // ws Comma ws fontFamilyName
+  // ws COMMA ws fontFamilyName
   private static boolean fontFamilyNameList_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fontFamilyNameList_1_0")) return false;
     boolean r;
@@ -1362,13 +1361,13 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // FontFeatureValues ws fontFamilyNameList ws '{' ws featureValueBlock* '}' ws
+  // FONT_FEATURE_VALUES ws fontFamilyNameList ws '{' ws featureValueBlock* '}' ws
   public static boolean fontFeatureValuesRule(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "fontFeatureValuesRule")) return false;
-    if (!nextTokenIs(b, FONTFEATUREVALUES)) return false;
+    if (!nextTokenIs(b, FONT_FEATURE_VALUES)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, FONTFEATUREVALUES);
+    r = consumeToken(b, FONT_FEATURE_VALUES);
     r = r && ws(b, l + 1);
     r = r && fontFamilyNameList(b, l + 1);
     r = r && ws(b, l + 1);
@@ -1393,9 +1392,9 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Function_ ws expr ')' ws
-  public static boolean function_(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "function_")) return false;
+  // FUNCTION_ ws expr ')' ws
+  public static boolean function(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "function")) return false;
     if (!nextTokenIs(b, FUNCTION_)) return false;
     boolean r;
     Marker m = enter_section_(b);
@@ -1404,12 +1403,12 @@ public class CssParser implements PsiParser, LightPsiParser {
     r = r && expr(b, l + 1);
     r = r && consumeToken(b, ")");
     r = r && ws(b, l + 1);
-    exit_section_(b, m, FUNCTION_, r);
+    exit_section_(b, m, FUNCTION, r);
     return r;
   }
 
   /* ********************************************************** */
-  // Function_ ws expression ')'
+  // FUNCTION_ ws expression ')'
   public static boolean functionalPseudo(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "functionalPseudo")) return false;
     if (!nextTokenIs(b, FUNCTION_)) return false;
@@ -1424,7 +1423,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (Function_ | '(') (any_ | unused)* ')'
+  // (FUNCTION_ | '(') (any_ | unused)* ')'
   public static boolean generalEnclosed(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "generalEnclosed")) return false;
     boolean r;
@@ -1436,7 +1435,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Function_ | '('
+  // FUNCTION_ | '('
   private static boolean generalEnclosed_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "generalEnclosed_0")) return false;
     boolean r;
@@ -1492,7 +1491,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Hash ws
+  // HASH ws
   public static boolean hexcolor(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "hexcolor")) return false;
     if (!nextTokenIs(b, HASH)) return false;
@@ -1505,19 +1504,19 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Ident
-  //         | MediaOnly
-  //         | Not
-  //         | And
-  //         | Or
-  //         | From
-  //         | To
-  public static boolean ident(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ident")) return false;
+  // IDENT
+  //         | MEDIA_ONLY
+  //         | NOT
+  //         | AND
+  //         | OR
+  //         | FROM
+  //         | TO
+  public static boolean ident_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ident_")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, IDENT, "<ident>");
+    Marker m = enter_section_(b, l, _NONE_, IDENT_, "<ident>");
     r = consumeToken(b, IDENT);
-    if (!r) r = consumeToken(b, MEDIAONLY);
+    if (!r) r = consumeToken(b, MEDIA_ONLY);
     if (!r) r = consumeToken(b, NOT);
     if (!r) r = consumeToken(b, AND);
     if (!r) r = consumeToken(b, OR);
@@ -1528,10 +1527,8 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Import ws (String_ | url) ws mediaQueryList ';' ws
-  //     | Import ws ( String_ | url) ws ';' ws
-  //     | Import ws ( String_ | url) ws mediaQueryList
-  //     | Import ws ( String_ | url) ws
+  // IMPORT ws (STRING_ | urlWrap) ws mediaQueryList ';' ws
+  //           | IMPORT ws (STRING_ | urlWrap) ws ';' ws
   public static boolean imports(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "imports")) return false;
     if (!nextTokenIs(b, IMPORT)) return false;
@@ -1539,13 +1536,11 @@ public class CssParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = imports_0(b, l + 1);
     if (!r) r = imports_1(b, l + 1);
-    if (!r) r = imports_2(b, l + 1);
-    if (!r) r = imports_3(b, l + 1);
     exit_section_(b, m, IMPORTS, r);
     return r;
   }
 
-  // Import ws (String_ | url) ws mediaQueryList ';' ws
+  // IMPORT ws (STRING_ | urlWrap) ws mediaQueryList ';' ws
   private static boolean imports_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "imports_0")) return false;
     boolean r;
@@ -1561,16 +1556,16 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // String_ | url
+  // STRING_ | urlWrap
   private static boolean imports_0_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "imports_0_2")) return false;
     boolean r;
     r = consumeToken(b, STRING_);
-    if (!r) r = url(b, l + 1);
+    if (!r) r = urlWrap(b, l + 1);
     return r;
   }
 
-  // Import ws ( String_ | url) ws ';' ws
+  // IMPORT ws (STRING_ | urlWrap) ws ';' ws
   private static boolean imports_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "imports_1")) return false;
     boolean r;
@@ -1585,57 +1580,12 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // String_ | url
+  // STRING_ | urlWrap
   private static boolean imports_1_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "imports_1_2")) return false;
     boolean r;
     r = consumeToken(b, STRING_);
-    if (!r) r = url(b, l + 1);
-    return r;
-  }
-
-  // Import ws ( String_ | url) ws mediaQueryList
-  private static boolean imports_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "imports_2")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, IMPORT);
-    r = r && ws(b, l + 1);
-    r = r && imports_2_2(b, l + 1);
-    r = r && ws(b, l + 1);
-    r = r && mediaQueryList(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // String_ | url
-  private static boolean imports_2_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "imports_2_2")) return false;
-    boolean r;
-    r = consumeToken(b, STRING_);
-    if (!r) r = url(b, l + 1);
-    return r;
-  }
-
-  // Import ws ( String_ | url) ws
-  private static boolean imports_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "imports_3")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, IMPORT);
-    r = r && ws(b, l + 1);
-    r = r && imports_3_2(b, l + 1);
-    r = r && ws(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // String_ | url
-  private static boolean imports_3_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "imports_3_2")) return false;
-    boolean r;
-    r = consumeToken(b, STRING_);
-    if (!r) r = url(b, l + 1);
+    if (!r) r = urlWrap(b, l + 1);
     return r;
   }
 
@@ -1663,7 +1613,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (From | To | Percentage) ws (Comma ws ( From | To | Percentage) ws)*
+  // (FROM | TO | PERCENTAGE) ws (COMMA ws ( FROM | TO | PERCENTAGE) ws)*
   public static boolean keyframeSelector(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "keyframeSelector")) return false;
     boolean r;
@@ -1675,7 +1625,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // From | To | Percentage
+  // FROM | TO | PERCENTAGE
   private static boolean keyframeSelector_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "keyframeSelector_0")) return false;
     boolean r;
@@ -1685,7 +1635,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (Comma ws ( From | To | Percentage) ws)*
+  // (COMMA ws ( FROM | TO | PERCENTAGE) ws)*
   private static boolean keyframeSelector_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "keyframeSelector_2")) return false;
     while (true) {
@@ -1696,7 +1646,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // Comma ws ( From | To | Percentage) ws
+  // COMMA ws ( FROM | TO | PERCENTAGE) ws
   private static boolean keyframeSelector_2_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "keyframeSelector_2_0")) return false;
     boolean r;
@@ -1709,7 +1659,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // From | To | Percentage
+  // FROM | TO | PERCENTAGE
   private static boolean keyframeSelector_2_0_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "keyframeSelector_2_0_2")) return false;
     boolean r;
@@ -1720,17 +1670,17 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Keyframes ws Space ws ident ws '{' ws keyframeBlock* '}' ws
+  // KEY_FRAMES ws SPACE ws ident_ ws '{' ws keyframeBlock* '}' ws
   public static boolean keyframesRule(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "keyframesRule")) return false;
-    if (!nextTokenIs(b, KEYFRAMES)) return false;
+    if (!nextTokenIs(b, KEY_FRAMES)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, KEYFRAMES);
+    r = consumeToken(b, KEY_FRAMES);
     r = r && ws(b, l + 1);
     r = r && consumeToken(b, SPACE);
     r = r && ws(b, l + 1);
-    r = r && ident(b, l + 1);
+    r = r && ident_(b, l + 1);
     r = r && ws(b, l + 1);
     r = r && consumeToken(b, "{");
     r = r && ws(b, l + 1);
@@ -1750,22 +1700,6 @@ public class CssParser implements PsiParser, LightPsiParser {
       if (!empty_element_parsed_guard_(b, "keyframesRule_8", c)) break;
     }
     return true;
-  }
-
-  /* ********************************************************** */
-  // Media ws mediaQueryList groupRuleBody ws
-  public static boolean media(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "media")) return false;
-    if (!nextTokenIs(b, MEDIA)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, MEDIA);
-    r = r && ws(b, l + 1);
-    r = r && mediaQueryList(b, l + 1);
-    r = r && groupRuleBody(b, l + 1);
-    r = r && ws(b, l + 1);
-    exit_section_(b, m, MEDIA, r);
-    return r;
   }
 
   /* ********************************************************** */
@@ -1804,20 +1738,20 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ident ws
+  // ident_ ws
   public static boolean mediaFeature(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaFeature")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, MEDIA_FEATURE, "<media feature>");
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   /* ********************************************************** */
-  // (MediaOnly | Not)? ws mediaType ws (And ws mediaExpression)*
-  //              | mediaExpression ( And ws mediaExpression)*
+  // (MEDIA_ONLY | NOT)? ws mediaType ws (AND ws mediaExpression)*
+  //              | mediaExpression ( AND ws mediaExpression)*
   public static boolean mediaQuery(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQuery")) return false;
     boolean r;
@@ -1828,7 +1762,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (MediaOnly | Not)? ws mediaType ws (And ws mediaExpression)*
+  // (MEDIA_ONLY | NOT)? ws mediaType ws (AND ws mediaExpression)*
   private static boolean mediaQuery_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQuery_0")) return false;
     boolean r;
@@ -1842,23 +1776,23 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (MediaOnly | Not)?
+  // (MEDIA_ONLY | NOT)?
   private static boolean mediaQuery_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQuery_0_0")) return false;
     mediaQuery_0_0_0(b, l + 1);
     return true;
   }
 
-  // MediaOnly | Not
+  // MEDIA_ONLY | NOT
   private static boolean mediaQuery_0_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQuery_0_0_0")) return false;
     boolean r;
-    r = consumeToken(b, MEDIAONLY);
+    r = consumeToken(b, MEDIA_ONLY);
     if (!r) r = consumeToken(b, NOT);
     return r;
   }
 
-  // (And ws mediaExpression)*
+  // (AND ws mediaExpression)*
   private static boolean mediaQuery_0_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQuery_0_4")) return false;
     while (true) {
@@ -1869,7 +1803,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // And ws mediaExpression
+  // AND ws mediaExpression
   private static boolean mediaQuery_0_4_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQuery_0_4_0")) return false;
     boolean r;
@@ -1881,7 +1815,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // mediaExpression ( And ws mediaExpression)*
+  // mediaExpression ( AND ws mediaExpression)*
   private static boolean mediaQuery_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQuery_1")) return false;
     boolean r;
@@ -1892,7 +1826,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( And ws mediaExpression)*
+  // ( AND ws mediaExpression)*
   private static boolean mediaQuery_1_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQuery_1_1")) return false;
     while (true) {
@@ -1903,7 +1837,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // And ws mediaExpression
+  // AND ws mediaExpression
   private static boolean mediaQuery_1_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQuery_1_1_0")) return false;
     boolean r;
@@ -1916,7 +1850,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (mediaQuery ( Comma ws mediaQuery)*)? ws
+  // (mediaQuery ( COMMA ws mediaQuery)*)? ws
   public static boolean mediaQueryList(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQueryList")) return false;
     boolean r;
@@ -1927,14 +1861,14 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (mediaQuery ( Comma ws mediaQuery)*)?
+  // (mediaQuery ( COMMA ws mediaQuery)*)?
   private static boolean mediaQueryList_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQueryList_0")) return false;
     mediaQueryList_0_0(b, l + 1);
     return true;
   }
 
-  // mediaQuery ( Comma ws mediaQuery)*
+  // mediaQuery ( COMMA ws mediaQuery)*
   private static boolean mediaQueryList_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQueryList_0_0")) return false;
     boolean r;
@@ -1945,7 +1879,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( Comma ws mediaQuery)*
+  // ( COMMA ws mediaQuery)*
   private static boolean mediaQueryList_0_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQueryList_0_0_1")) return false;
     while (true) {
@@ -1956,7 +1890,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // Comma ws mediaQuery
+  // COMMA ws mediaQuery
   private static boolean mediaQueryList_0_0_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaQueryList_0_0_1_0")) return false;
     boolean r;
@@ -1969,67 +1903,71 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ident
+  // ident_
   public static boolean mediaType(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "mediaType")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, MEDIA_TYPE, "<media type>");
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   /* ********************************************************** */
-  // ident
+  // MEDIA ws mediaQueryList groupRuleBody ws
+  public static boolean media_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "media_")) return false;
+    if (!nextTokenIs(b, MEDIA)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, MEDIA);
+    r = r && ws(b, l + 1);
+    r = r && mediaQueryList(b, l + 1);
+    r = r && groupRuleBody(b, l + 1);
+    r = r && ws(b, l + 1);
+    exit_section_(b, m, MEDIA_, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // ident_
   public static boolean namespacePrefix(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "namespacePrefix")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, NAMESPACE_PREFIX, "<namespace prefix>");
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   /* ********************************************************** */
-  // Namespace ws (namespacePrefix ws)? (String_ | url) ws ';' ws
-  //              | Namespace ws (namespacePrefix ws)? ( String_ | url) ws
+  // NAMESPACE ws (namespacePrefix ws)? (STRING_ | urlWrap) ws ';' ws
   public static boolean namespace_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "namespace_")) return false;
     if (!nextTokenIs(b, NAMESPACE)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = namespace__0(b, l + 1);
-    if (!r) r = namespace__1(b, l + 1);
+    r = consumeToken(b, NAMESPACE);
+    r = r && ws(b, l + 1);
+    r = r && namespace__2(b, l + 1);
+    r = r && namespace__3(b, l + 1);
+    r = r && ws(b, l + 1);
+    r = r && consumeToken(b, ";");
+    r = r && ws(b, l + 1);
     exit_section_(b, m, NAMESPACE_, r);
     return r;
   }
 
-  // Namespace ws (namespacePrefix ws)? (String_ | url) ws ';' ws
-  private static boolean namespace__0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "namespace__0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, NAMESPACE);
-    r = r && ws(b, l + 1);
-    r = r && namespace__0_2(b, l + 1);
-    r = r && namespace__0_3(b, l + 1);
-    r = r && ws(b, l + 1);
-    r = r && consumeToken(b, ";");
-    r = r && ws(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
   // (namespacePrefix ws)?
-  private static boolean namespace__0_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "namespace__0_2")) return false;
-    namespace__0_2_0(b, l + 1);
+  private static boolean namespace__2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "namespace__2")) return false;
+    namespace__2_0(b, l + 1);
     return true;
   }
 
   // namespacePrefix ws
-  private static boolean namespace__0_2_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "namespace__0_2_0")) return false;
+  private static boolean namespace__2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "namespace__2_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = namespacePrefix(b, l + 1);
@@ -2038,64 +1976,23 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // String_ | url
-  private static boolean namespace__0_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "namespace__0_3")) return false;
+  // STRING_ | urlWrap
+  private static boolean namespace__3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "namespace__3")) return false;
     boolean r;
     r = consumeToken(b, STRING_);
-    if (!r) r = url(b, l + 1);
-    return r;
-  }
-
-  // Namespace ws (namespacePrefix ws)? ( String_ | url) ws
-  private static boolean namespace__1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "namespace__1")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, NAMESPACE);
-    r = r && ws(b, l + 1);
-    r = r && namespace__1_2(b, l + 1);
-    r = r && namespace__1_3(b, l + 1);
-    r = r && ws(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // (namespacePrefix ws)?
-  private static boolean namespace__1_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "namespace__1_2")) return false;
-    namespace__1_2_0(b, l + 1);
-    return true;
-  }
-
-  // namespacePrefix ws
-  private static boolean namespace__1_2_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "namespace__1_2_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = namespacePrefix(b, l + 1);
-    r = r && ws(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // String_ | url
-  private static boolean namespace__1_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "namespace__1_3")) return false;
-    boolean r;
-    r = consumeToken(b, STRING_);
-    if (!r) r = url(b, l + 1);
+    if (!r) r = urlWrap(b, l + 1);
     return r;
   }
 
   /* ********************************************************** */
-  // PseudoNot ws negationArg ws ')'
+  // PSEUDO_NOT ws negationArg ws ')'
   public static boolean negation(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "negation")) return false;
-    if (!nextTokenIs(b, PSEUDONOT)) return false;
+    if (!nextTokenIs(b, PSEUDO_NOT)) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, PSEUDONOT);
+    r = consumeToken(b, PSEUDO_NOT);
     r = r && ws(b, l + 1);
     r = r && negationArg(b, l + 1);
     r = r && ws(b, l + 1);
@@ -2106,11 +2003,11 @@ public class CssParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // typeSelector
-  //               | universal
-  //               | Hash
-  //               | className
-  //               | attrib
-  //               | pseudo
+  //     | universal
+  //     | HASH
+  //     | className
+  //     | attrib
+  //     | pseudo
   public static boolean negationArg(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "negationArg")) return false;
     boolean r;
@@ -2127,13 +2024,13 @@ public class CssParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // ruleset
-  //                   | media
-  //                   | page
+  //                   | media_
+  //                   | page_
   //                   | fontFaceRule
   //                   | keyframesRule
   //                   | supportsRule
-  //                   | viewport
-  //                   | counterStyle
+  //                   | viewport_
+  //                   | counterStyle_
   //                   | fontFeatureValuesRule
   //                   | atRule
   public static boolean nestedStatement(PsiBuilder b, int l) {
@@ -2141,13 +2038,13 @@ public class CssParser implements PsiParser, LightPsiParser {
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, NESTED_STATEMENT, "<nested statement>");
     r = ruleset(b, l + 1);
-    if (!r) r = media(b, l + 1);
-    if (!r) r = page(b, l + 1);
+    if (!r) r = media_(b, l + 1);
+    if (!r) r = page_(b, l + 1);
     if (!r) r = fontFaceRule(b, l + 1);
     if (!r) r = keyframesRule(b, l + 1);
     if (!r) r = supportsRule(b, l + 1);
-    if (!r) r = viewport(b, l + 1);
-    if (!r) r = counterStyle(b, l + 1);
+    if (!r) r = viewport_(b, l + 1);
+    if (!r) r = counterStyle_(b, l + 1);
     if (!r) r = fontFeatureValuesRule(b, l + 1);
     if (!r) r = atRule(b, l + 1);
     exit_section_(b, l, m, r, false, null);
@@ -2155,27 +2052,27 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (Plus | Minus)? Number
-  public static boolean number(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "number")) return false;
+  // (PLUS | MINUS)? NUMBER
+  public static boolean number_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "number_")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, NUMBER, "<number>");
-    r = number_0(b, l + 1);
+    Marker m = enter_section_(b, l, _NONE_, NUMBER_, "<number>");
+    r = number__0(b, l + 1);
     r = r && consumeToken(b, NUMBER);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
-  // (Plus | Minus)?
-  private static boolean number_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "number_0")) return false;
-    number_0_0(b, l + 1);
+  // (PLUS | MINUS)?
+  private static boolean number__0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "number__0")) return false;
+    number__0_0(b, l + 1);
     return true;
   }
 
-  // Plus | Minus
-  private static boolean number_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "number_0_0")) return false;
+  // PLUS | MINUS
+  private static boolean number__0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "number__0_0")) return false;
     boolean r;
     r = consumeToken(b, PLUS);
     if (!r) r = consumeToken(b, MINUS);
@@ -2184,9 +2081,9 @@ public class CssParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // '/' ws
-  //             | Comma ws
-  //             | Space ws
-  //             | '=' ws
+  //     | COMMA ws
+  //     | SPACE ws
+  //     | '=' ws
   public static boolean operator_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "operator_")) return false;
     boolean r;
@@ -2210,7 +2107,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Comma ws
+  // COMMA ws
   private static boolean operator__1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "operator__1")) return false;
     boolean r;
@@ -2221,7 +2118,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Space ws
+  // SPACE ws
   private static boolean operator__2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "operator__2")) return false;
     boolean r;
@@ -2244,91 +2141,91 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Page ws pseudoPage? '{' ws declaration? (';' ws declaration?)* '}' ws
-  public static boolean page(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "page")) return false;
+  // PAGE ws pseudoPage? '{' ws declaration? (';' ws declaration?)* '}' ws
+  public static boolean page_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "page_")) return false;
     if (!nextTokenIs(b, PAGE)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, PAGE);
     r = r && ws(b, l + 1);
-    r = r && page_2(b, l + 1);
+    r = r && page__2(b, l + 1);
     r = r && consumeToken(b, "{");
     r = r && ws(b, l + 1);
-    r = r && page_5(b, l + 1);
-    r = r && page_6(b, l + 1);
+    r = r && page__5(b, l + 1);
+    r = r && page__6(b, l + 1);
     r = r && consumeToken(b, "}");
     r = r && ws(b, l + 1);
-    exit_section_(b, m, PAGE, r);
+    exit_section_(b, m, PAGE_, r);
     return r;
   }
 
   // pseudoPage?
-  private static boolean page_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "page_2")) return false;
+  private static boolean page__2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "page__2")) return false;
     pseudoPage(b, l + 1);
     return true;
   }
 
   // declaration?
-  private static boolean page_5(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "page_5")) return false;
+  private static boolean page__5(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "page__5")) return false;
     declaration(b, l + 1);
     return true;
   }
 
   // (';' ws declaration?)*
-  private static boolean page_6(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "page_6")) return false;
+  private static boolean page__6(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "page__6")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!page_6_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "page_6", c)) break;
+      if (!page__6_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "page__6", c)) break;
     }
     return true;
   }
 
   // ';' ws declaration?
-  private static boolean page_6_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "page_6_0")) return false;
+  private static boolean page__6_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "page__6_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, ";");
     r = r && ws(b, l + 1);
-    r = r && page_6_0_2(b, l + 1);
+    r = r && page__6_0_2(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // declaration?
-  private static boolean page_6_0_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "page_6_0_2")) return false;
+  private static boolean page__6_0_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "page__6_0_2")) return false;
     declaration(b, l + 1);
     return true;
   }
 
   /* ********************************************************** */
-  // (Plus | Minus)? Percentage
-  public static boolean percentage(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "percentage")) return false;
+  // (PLUS | MINUS)? PERCENTAGE
+  public static boolean percentage_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "percentage_")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, PERCENTAGE, "<percentage>");
-    r = percentage_0(b, l + 1);
+    Marker m = enter_section_(b, l, _NONE_, PERCENTAGE_, "<percentage>");
+    r = percentage__0(b, l + 1);
     r = r && consumeToken(b, PERCENTAGE);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
-  // (Plus | Minus)?
-  private static boolean percentage_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "percentage_0")) return false;
-    percentage_0_0(b, l + 1);
+  // (PLUS | MINUS)?
+  private static boolean percentage__0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "percentage__0")) return false;
+    percentage__0_0(b, l + 1);
     return true;
   }
 
-  // Plus | Minus
-  private static boolean percentage_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "percentage_0_0")) return false;
+  // PLUS | MINUS
+  private static boolean percentage__0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "percentage__0_0")) return false;
     boolean r;
     r = consumeToken(b, PLUS);
     if (!r) r = consumeToken(b, MINUS);
@@ -2336,7 +2233,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Important ws
+  // IMPORTANT ws
   public static boolean prio(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "prio")) return false;
     if (!nextTokenIs(b, IMPORTANT)) return false;
@@ -2349,10 +2246,10 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ident ws
-  //             | Variable ws
-  //             | '*' ident
-  //             | '_' ident
+  // ident_ ws
+  //     | VARIABLE ws
+  //     | '*' ident_
+  //     | '_' ident_
   public static boolean property_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "property_")) return false;
     boolean r;
@@ -2365,18 +2262,18 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ident ws
+  // ident_ ws
   private static boolean property__0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "property__0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // Variable ws
+  // VARIABLE ws
   private static boolean property__1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "property__1")) return false;
     boolean r;
@@ -2387,30 +2284,30 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // '*' ident
+  // '*' ident_
   private static boolean property__2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "property__2")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, "*");
-    r = r && ident(b, l + 1);
+    r = r && ident_(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // '_' ident
+  // '_' ident_
   private static boolean property__3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "property__3")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, "_");
-    r = r && ident(b, l + 1);
+    r = r && ident_(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // ':' ':'? (ident | functionalPseudo)
+  // ':' ':'? (ident_ | functionalPseudo)
   public static boolean pseudo(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "pseudo")) return false;
     boolean r;
@@ -2429,23 +2326,23 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // ident | functionalPseudo
+  // ident_ | functionalPseudo
   private static boolean pseudo_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "pseudo_2")) return false;
     boolean r;
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     if (!r) r = functionalPseudo(b, l + 1);
     return r;
   }
 
   /* ********************************************************** */
-  // ':' ident ws
+  // ':' ident_ ws
   public static boolean pseudoPage(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "pseudoPage")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, PSEUDO_PAGE, "<pseudo page>");
     r = consumeToken(b, ":");
-    r = r && ident(b, l + 1);
+    r = r && ident_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
@@ -2556,7 +2453,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // selector (Comma ws selector)*
+  // selector (COMMA ws selector)*
   public static boolean selectorGroup(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "selectorGroup")) return false;
     boolean r;
@@ -2567,7 +2464,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (Comma ws selector)*
+  // (COMMA ws selector)*
   private static boolean selectorGroup_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "selectorGroup_1")) return false;
     while (true) {
@@ -2578,7 +2475,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // Comma ws selector
+  // COMMA ws selector
   private static boolean selectorGroup_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "selectorGroup_1_0")) return false;
     boolean r;
@@ -2591,8 +2488,8 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (typeSelector | universal) (Hash | className | attrib | pseudo | negation)*
-  //                          | ( Hash | className | attrib | pseudo | negation)+
+  // (typeSelector | universal) (HASH | className | attrib | pseudo | negation)*
+  //                          | ( HASH | className | attrib | pseudo | negation)+
   public static boolean simpleSelectorSequence(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "simpleSelectorSequence")) return false;
     boolean r;
@@ -2603,7 +2500,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (typeSelector | universal) (Hash | className | attrib | pseudo | negation)*
+  // (typeSelector | universal) (HASH | className | attrib | pseudo | negation)*
   private static boolean simpleSelectorSequence_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "simpleSelectorSequence_0")) return false;
     boolean r;
@@ -2623,7 +2520,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (Hash | className | attrib | pseudo | negation)*
+  // (HASH | className | attrib | pseudo | negation)*
   private static boolean simpleSelectorSequence_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "simpleSelectorSequence_0_1")) return false;
     while (true) {
@@ -2634,7 +2531,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // Hash | className | attrib | pseudo | negation
+  // HASH | className | attrib | pseudo | negation
   private static boolean simpleSelectorSequence_0_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "simpleSelectorSequence_0_1_0")) return false;
     boolean r;
@@ -2646,7 +2543,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( Hash | className | attrib | pseudo | negation)+
+  // ( HASH | className | attrib | pseudo | negation)+
   private static boolean simpleSelectorSequence_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "simpleSelectorSequence_1")) return false;
     boolean r;
@@ -2661,7 +2558,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Hash | className | attrib | pseudo | negation
+  // HASH | className | attrib | pseudo | negation
   private static boolean simpleSelectorSequence_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "simpleSelectorSequence_1_0")) return false;
     boolean r;
@@ -2674,9 +2571,8 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ws (charset ( Comment | Space | Cdo | Cdc)*)* (imports ( Comment | Space | Cdo | Cdc)*)* (
-  //                namespace_ ( Comment | Space | Cdo | Cdc)*
-  //                )* (nestedStatement ( Comment | Space | Cdo | Cdc)*)*
+  // ws (charset_ (COMMENT | SPACE | CDO | CDC)*)*
+  //                   ((imports | namespace_ | nestedStatement) (COMMENT | SPACE | CDO | CDC)*)* <<eof>>
   static boolean stylesheet(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "stylesheet")) return false;
     boolean r;
@@ -2684,13 +2580,12 @@ public class CssParser implements PsiParser, LightPsiParser {
     r = ws(b, l + 1);
     r = r && stylesheet_1(b, l + 1);
     r = r && stylesheet_2(b, l + 1);
-    r = r && stylesheet_3(b, l + 1);
-    r = r && stylesheet_4(b, l + 1);
+    r = r && eof(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // (charset ( Comment | Space | Cdo | Cdc)*)*
+  // (charset_ (COMMENT | SPACE | CDO | CDC)*)*
   private static boolean stylesheet_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "stylesheet_1")) return false;
     while (true) {
@@ -2701,18 +2596,18 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // charset ( Comment | Space | Cdo | Cdc)*
+  // charset_ (COMMENT | SPACE | CDO | CDC)*
   private static boolean stylesheet_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "stylesheet_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = charset(b, l + 1);
+    r = charset_(b, l + 1);
     r = r && stylesheet_1_0_1(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // ( Comment | Space | Cdo | Cdc)*
+  // (COMMENT | SPACE | CDO | CDC)*
   private static boolean stylesheet_1_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "stylesheet_1_0_1")) return false;
     while (true) {
@@ -2723,7 +2618,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // Comment | Space | Cdo | Cdc
+  // COMMENT | SPACE | CDO | CDC
   private static boolean stylesheet_1_0_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "stylesheet_1_0_1_0")) return false;
     boolean r;
@@ -2734,7 +2629,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (imports ( Comment | Space | Cdo | Cdc)*)*
+  // ((imports | namespace_ | nestedStatement) (COMMENT | SPACE | CDO | CDC)*)*
   private static boolean stylesheet_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "stylesheet_2")) return false;
     while (true) {
@@ -2745,18 +2640,28 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // imports ( Comment | Space | Cdo | Cdc)*
+  // (imports | namespace_ | nestedStatement) (COMMENT | SPACE | CDO | CDC)*
   private static boolean stylesheet_2_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "stylesheet_2_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = imports(b, l + 1);
+    r = stylesheet_2_0_0(b, l + 1);
     r = r && stylesheet_2_0_1(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // ( Comment | Space | Cdo | Cdc)*
+  // imports | namespace_ | nestedStatement
+  private static boolean stylesheet_2_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "stylesheet_2_0_0")) return false;
+    boolean r;
+    r = imports(b, l + 1);
+    if (!r) r = namespace_(b, l + 1);
+    if (!r) r = nestedStatement(b, l + 1);
+    return r;
+  }
+
+  // (COMMENT | SPACE | CDO | CDC)*
   private static boolean stylesheet_2_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "stylesheet_2_0_1")) return false;
     while (true) {
@@ -2767,99 +2672,9 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // Comment | Space | Cdo | Cdc
+  // COMMENT | SPACE | CDO | CDC
   private static boolean stylesheet_2_0_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "stylesheet_2_0_1_0")) return false;
-    boolean r;
-    r = consumeToken(b, COMMENT);
-    if (!r) r = consumeToken(b, SPACE);
-    if (!r) r = consumeToken(b, CDO);
-    if (!r) r = consumeToken(b, CDC);
-    return r;
-  }
-
-  // (
-  //                namespace_ ( Comment | Space | Cdo | Cdc)*
-  //                )*
-  private static boolean stylesheet_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "stylesheet_3")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!stylesheet_3_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "stylesheet_3", c)) break;
-    }
-    return true;
-  }
-
-  // namespace_ ( Comment | Space | Cdo | Cdc)*
-  private static boolean stylesheet_3_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "stylesheet_3_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = namespace_(b, l + 1);
-    r = r && stylesheet_3_0_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // ( Comment | Space | Cdo | Cdc)*
-  private static boolean stylesheet_3_0_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "stylesheet_3_0_1")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!stylesheet_3_0_1_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "stylesheet_3_0_1", c)) break;
-    }
-    return true;
-  }
-
-  // Comment | Space | Cdo | Cdc
-  private static boolean stylesheet_3_0_1_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "stylesheet_3_0_1_0")) return false;
-    boolean r;
-    r = consumeToken(b, COMMENT);
-    if (!r) r = consumeToken(b, SPACE);
-    if (!r) r = consumeToken(b, CDO);
-    if (!r) r = consumeToken(b, CDC);
-    return r;
-  }
-
-  // (nestedStatement ( Comment | Space | Cdo | Cdc)*)*
-  private static boolean stylesheet_4(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "stylesheet_4")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!stylesheet_4_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "stylesheet_4", c)) break;
-    }
-    return true;
-  }
-
-  // nestedStatement ( Comment | Space | Cdo | Cdc)*
-  private static boolean stylesheet_4_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "stylesheet_4_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = nestedStatement(b, l + 1);
-    r = r && stylesheet_4_0_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // ( Comment | Space | Cdo | Cdc)*
-  private static boolean stylesheet_4_0_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "stylesheet_4_0_1")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!stylesheet_4_0_1_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "stylesheet_4_0_1", c)) break;
-    }
-    return true;
-  }
-
-  // Comment | Space | Cdo | Cdc
-  private static boolean stylesheet_4_0_1_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "stylesheet_4_0_1_0")) return false;
     boolean r;
     r = consumeToken(b, COMMENT);
     if (!r) r = consumeToken(b, SPACE);
@@ -2915,7 +2730,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // supportsConditionInParens (ws Space ws And ws Space ws supportsConditionInParens)+
+  // supportsConditionInParens (ws SPACE ws AND ws SPACE ws supportsConditionInParens)+
   public static boolean supportsConjunction(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "supportsConjunction")) return false;
     boolean r;
@@ -2926,7 +2741,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (ws Space ws And ws Space ws supportsConditionInParens)+
+  // (ws SPACE ws AND ws SPACE ws supportsConditionInParens)+
   private static boolean supportsConjunction_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "supportsConjunction_1")) return false;
     boolean r;
@@ -2941,7 +2756,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ws Space ws And ws Space ws supportsConditionInParens
+  // ws SPACE ws AND ws SPACE ws supportsConditionInParens
   private static boolean supportsConjunction_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "supportsConjunction_1_0")) return false;
     boolean r;
@@ -2973,7 +2788,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // supportsConditionInParens (ws Space ws Or ws Space ws supportsConditionInParens)+
+  // supportsConditionInParens (ws SPACE ws OR ws SPACE ws supportsConditionInParens)+
   public static boolean supportsDisjunction(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "supportsDisjunction")) return false;
     boolean r;
@@ -2984,7 +2799,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (ws Space ws Or ws Space ws supportsConditionInParens)+
+  // (ws SPACE ws OR ws SPACE ws supportsConditionInParens)+
   private static boolean supportsDisjunction_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "supportsDisjunction_1")) return false;
     boolean r;
@@ -2999,7 +2814,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ws Space ws Or ws Space ws supportsConditionInParens
+  // ws SPACE ws OR ws SPACE ws supportsConditionInParens
   private static boolean supportsDisjunction_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "supportsDisjunction_1_0")) return false;
     boolean r;
@@ -3017,7 +2832,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Not ws Space ws supportsConditionInParens
+  // NOT ws SPACE ws supportsConditionInParens
   public static boolean supportsNegation(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "supportsNegation")) return false;
     if (!nextTokenIs(b, NOT)) return false;
@@ -3033,7 +2848,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Supports ws supportsCondition ws groupRuleBody
+  // SUPPORTS ws supportsCondition ws groupRuleBody
   public static boolean supportsRule(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "supportsRule")) return false;
     if (!nextTokenIs(b, SUPPORTS)) return false;
@@ -3049,19 +2864,19 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // number ws
-  //        | percentage ws
-  //        | dimension ws
-  //        | String_ ws
-  //        | UnicodeRange ws
-  //        | ident ws
+  // number_ ws
+  //        | percentage_ ws
+  //        | dimension_ ws
+  //        | STRING_ ws
+  //        | UNICODE_RANGE ws
+  //        | ident_ ws
   //        | var_
-  //        | url ws
+  //        | urlWrap ws
   //        | hexcolor
-  //        | calc
-  //        | function_
-  //        | unknownDimension ws
-  //        | dxImageTransform
+  //        | calc_
+  //        | function
+  //        | unknownDimension_ ws
+  //        | dxImageTransform_
   public static boolean term(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "term")) return false;
     boolean r;
@@ -3075,48 +2890,48 @@ public class CssParser implements PsiParser, LightPsiParser {
     if (!r) r = var_(b, l + 1);
     if (!r) r = term_7(b, l + 1);
     if (!r) r = hexcolor(b, l + 1);
-    if (!r) r = calc(b, l + 1);
-    if (!r) r = function_(b, l + 1);
+    if (!r) r = calc_(b, l + 1);
+    if (!r) r = function(b, l + 1);
     if (!r) r = term_11(b, l + 1);
-    if (!r) r = dxImageTransform(b, l + 1);
+    if (!r) r = dxImageTransform_(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
-  // number ws
+  // number_ ws
   private static boolean term_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "term_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = number(b, l + 1);
+    r = number_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // percentage ws
+  // percentage_ ws
   private static boolean term_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "term_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = percentage(b, l + 1);
+    r = percentage_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // dimension ws
+  // dimension_ ws
   private static boolean term_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "term_2")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = dimension(b, l + 1);
+    r = dimension_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // String_ ws
+  // STRING_ ws
   private static boolean term_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "term_3")) return false;
     boolean r;
@@ -3127,52 +2942,52 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // UnicodeRange ws
+  // UNICODE_RANGE ws
   private static boolean term_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "term_4")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, UNICODERANGE);
+    r = consumeToken(b, UNICODE_RANGE);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // ident ws
+  // ident_ ws
   private static boolean term_5(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "term_5")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // url ws
+  // urlWrap ws
   private static boolean term_7(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "term_7")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = url(b, l + 1);
+    r = urlWrap(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // unknownDimension ws
+  // unknownDimension_ ws
   private static boolean term_11(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "term_11")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = unknownDimension(b, l + 1);
+    r = unknownDimension_(b, l + 1);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // (ident | '*')? '|'
+  // (ident_ | '*')? '|'
   public static boolean typeNamespacePrefix(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "typeNamespacePrefix")) return false;
     boolean r;
@@ -3183,18 +2998,18 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (ident | '*')?
+  // (ident_ | '*')?
   private static boolean typeNamespacePrefix_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "typeNamespacePrefix_0")) return false;
     typeNamespacePrefix_0_0(b, l + 1);
     return true;
   }
 
-  // ident | '*'
+  // ident_ | '*'
   private static boolean typeNamespacePrefix_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "typeNamespacePrefix_0_0")) return false;
     boolean r;
-    r = ident(b, l + 1);
+    r = ident_(b, l + 1);
     if (!r) r = consumeToken(b, "*");
     return r;
   }
@@ -3238,27 +3053,27 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (Plus | Minus)? UnknownDimension
-  public static boolean unknownDimension(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "unknownDimension")) return false;
+  // (PLUS | MINUS)? UNKNOWN_DIMENSION
+  public static boolean unknownDimension_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "unknownDimension_")) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, UNKNOWN_DIMENSION, "<unknown dimension>");
-    r = unknownDimension_0(b, l + 1);
-    r = r && consumeToken(b, UNKNOWNDIMENSION);
+    Marker m = enter_section_(b, l, _NONE_, UNKNOWN_DIMENSION_, "<unknown dimension>");
+    r = unknownDimension__0(b, l + 1);
+    r = r && consumeToken(b, UNKNOWN_DIMENSION);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
-  // (Plus | Minus)?
-  private static boolean unknownDimension_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "unknownDimension_0")) return false;
-    unknownDimension_0_0(b, l + 1);
+  // (PLUS | MINUS)?
+  private static boolean unknownDimension__0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "unknownDimension__0")) return false;
+    unknownDimension__0_0(b, l + 1);
     return true;
   }
 
-  // Plus | Minus
-  private static boolean unknownDimension_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "unknownDimension_0_0")) return false;
+  // PLUS | MINUS
+  private static boolean unknownDimension__0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "unknownDimension__0_0")) return false;
     boolean r;
     r = consumeToken(b, PLUS);
     if (!r) r = consumeToken(b, MINUS);
@@ -3267,10 +3082,10 @@ public class CssParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // block
-  //          | AtKeyword ws
+  //          | AT_KEYWORD ws
   //          | ';' ws
-  //          | Cdo ws
-  //          | Cdc ws
+  //          | CDO ws
+  //          | CDC ws
   public static boolean unused(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "unused")) return false;
     boolean r;
@@ -3284,12 +3099,12 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // AtKeyword ws
+  // AT_KEYWORD ws
   private static boolean unused_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "unused_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, ATKEYWORD);
+    r = consumeToken(b, AT_KEYWORD);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
@@ -3306,7 +3121,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Cdo ws
+  // CDO ws
   private static boolean unused_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "unused_3")) return false;
     boolean r;
@@ -3317,7 +3132,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // Cdc ws
+  // CDC ws
   private static boolean unused_4(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "unused_4")) return false;
     boolean r;
@@ -3329,22 +3144,21 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Url_ ws String_ ws ')'
-  //       | Url
-  public static boolean url(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "url")) return false;
-    if (!nextTokenIs(b, "<url>", URL, URL_)) return false;
+  // URL_ ws STRING_ ws ')' | URL
+  public static boolean urlWrap(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "urlWrap")) return false;
+    if (!nextTokenIs(b, "<url wrap>", URL, URL_)) return false;
     boolean r;
-    Marker m = enter_section_(b, l, _NONE_, URL, "<url>");
-    r = url_0(b, l + 1);
+    Marker m = enter_section_(b, l, _NONE_, URL_WRAP, "<url wrap>");
+    r = urlWrap_0(b, l + 1);
     if (!r) r = consumeToken(b, URL);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
-  // Url_ ws String_ ws ')'
-  private static boolean url_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "url_0")) return false;
+  // URL_ ws STRING_ ws ')'
+  private static boolean urlWrap_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "urlWrap_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, URL_);
@@ -3357,7 +3171,7 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (any_ | block | AtKeyword ws)+
+  // (any_ | block | AT_KEYWORD ws)+
   public static boolean value(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "value")) return false;
     boolean r;
@@ -3372,7 +3186,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // any_ | block | AtKeyword ws
+  // any_ | block | AT_KEYWORD ws
   private static boolean value_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "value_0")) return false;
     boolean r;
@@ -3384,19 +3198,19 @@ public class CssParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // AtKeyword ws
+  // AT_KEYWORD ws
   private static boolean value_0_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "value_0_2")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, ATKEYWORD);
+    r = consumeToken(b, AT_KEYWORD);
     r = r && ws(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   /* ********************************************************** */
-  // Var ws Variable ws ')' ws
+  // VAR ws VARIABLE ws ')' ws
   public static boolean var_(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "var_")) return false;
     if (!nextTokenIs(b, VAR)) return false;
@@ -3413,9 +3227,9 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // Viewport ws '{' ws declarationList? '}' ws
-  public static boolean viewport(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "viewport")) return false;
+  // VIEWPORT ws '{' ws declarationList? '}' ws
+  public static boolean viewport_(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "viewport_")) return false;
     if (!nextTokenIs(b, VIEWPORT)) return false;
     boolean r;
     Marker m = enter_section_(b);
@@ -3423,22 +3237,22 @@ public class CssParser implements PsiParser, LightPsiParser {
     r = r && ws(b, l + 1);
     r = r && consumeToken(b, "{");
     r = r && ws(b, l + 1);
-    r = r && viewport_4(b, l + 1);
+    r = r && viewport__4(b, l + 1);
     r = r && consumeToken(b, "}");
     r = r && ws(b, l + 1);
-    exit_section_(b, m, VIEWPORT, r);
+    exit_section_(b, m, VIEWPORT_, r);
     return r;
   }
 
   // declarationList?
-  private static boolean viewport_4(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "viewport_4")) return false;
+  private static boolean viewport__4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "viewport__4")) return false;
     declarationList(b, l + 1);
     return true;
   }
 
   /* ********************************************************** */
-  // (Comment | Space)*
+  // (COMMENT | SPACE)*
   public static boolean ws(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ws")) return false;
     Marker m = enter_section_(b, l, _NONE_, WS, "<ws>");
@@ -3451,7 +3265,7 @@ public class CssParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // Comment | Space
+  // COMMENT | SPACE
   private static boolean ws_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ws_0")) return false;
     boolean r;

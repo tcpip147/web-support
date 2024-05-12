@@ -11,7 +11,7 @@ public interface CssImports extends PsiElement {
   CssMediaQueryList getMediaQueryList();
 
   @Nullable
-  CssUrl getUrl();
+  CssUrlWrap getUrlWrap();
 
   @NotNull
   List<CssWs> getWsList();

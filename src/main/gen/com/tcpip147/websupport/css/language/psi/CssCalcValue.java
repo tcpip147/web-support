@@ -11,16 +11,16 @@ public interface CssCalcValue extends PsiElement {
   CssCalcSum getCalcSum();
 
   @Nullable
-  CssDimension getDimension();
+  CssDimension_ getDimension_();
 
   @Nullable
-  CssNumber getNumber();
+  CssNumber_ getNumber_();
 
   @Nullable
-  CssPercentage getPercentage();
+  CssPercentage_ getPercentage_();
 
   @Nullable
-  CssUnknownDimension getUnknownDimension();
+  CssUnknownDimension_ getUnknownDimension_();
 
   @NotNull
   List<CssWs> getWsList();

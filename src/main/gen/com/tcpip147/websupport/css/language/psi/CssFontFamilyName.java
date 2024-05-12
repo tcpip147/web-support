@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface CssFontFamilyName extends PsiElement {
 
   @NotNull
-  List<CssIdent> getIdentList();
+  List<CssIdent_> getIdent_List();
 
   @NotNull
   List<CssWs> getWsList();

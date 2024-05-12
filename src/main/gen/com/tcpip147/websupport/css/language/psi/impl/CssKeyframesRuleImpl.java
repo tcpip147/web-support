@@ -29,8 +29,8 @@ public class CssKeyframesRuleImpl extends ASTWrapperPsiElement implements CssKey
 
   @Override
   @NotNull
-  public CssIdent getIdent() {
-    return findNotNullChildByClass(CssIdent.class);
+  public CssIdent_ getIdent_() {
+    return findNotNullChildByClass(CssIdent_.class);
   }
 
   @Override

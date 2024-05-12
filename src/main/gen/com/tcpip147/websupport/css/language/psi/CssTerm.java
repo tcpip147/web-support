@@ -8,34 +8,34 @@ import com.intellij.psi.PsiElement;
 public interface CssTerm extends PsiElement {
 
   @Nullable
-  CssCalc getCalc();
+  CssCalc_ getCalc_();
 
   @Nullable
-  CssDimension getDimension();
+  CssDimension_ getDimension_();
 
   @Nullable
-  CssDxImageTransform getDxImageTransform();
+  CssDxImageTransform_ getDxImageTransform_();
 
   @Nullable
-  CssFunction_ getFunction_();
+  CssFunction getFunction();
 
   @Nullable
   CssHexcolor getHexcolor();
 
   @Nullable
-  CssIdent getIdent();
+  CssIdent_ getIdent_();
 
   @Nullable
-  CssNumber getNumber();
+  CssNumber_ getNumber_();
 
   @Nullable
-  CssPercentage getPercentage();
+  CssPercentage_ getPercentage_();
 
   @Nullable
-  CssUnknownDimension getUnknownDimension();
+  CssUnknownDimension_ getUnknownDimension_();
 
   @Nullable
-  CssUrl getUrl();
+  CssUrlWrap getUrlWrap();
 
   @Nullable
   CssVar_ getVar_();
