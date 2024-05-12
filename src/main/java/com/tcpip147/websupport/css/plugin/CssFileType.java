@@ -21,7 +21,7 @@ public class CssFileType extends LanguageFileType {
 
     @Override
     public @NonNls @NotNull String getName() {
-        return "Css File";
+        return "Css";
     }
 
     @Override

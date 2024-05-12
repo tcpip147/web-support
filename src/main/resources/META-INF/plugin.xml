@@ -6,21 +6,16 @@
     <depends>com.intellij.modules.platform</depends>
     <extensions defaultExtensionNs="com.intellij">
         <postStartupActivity implementation="com.tcpip147.websupport.OnStartupProject"/>
-        <fileType name="Html File"
+        <fileType name="Html"
                   implementationClass="com.tcpip147.websupport.html.plugin.HtmlFileType"
                   fieldName="INSTANCE"
                   language="HTML"
                   extensions="html"/>
-        <fileType name="Css File"
+        <fileType name="Css"
                   implementationClass="com.tcpip147.websupport.css.plugin.CssFileType"
                   fieldName="INSTANCE"
                   language="Css"
                   extensions="css"/>
-        <lang.parserDefinition language="Css"
-                               implementationClass="com.tcpip147.websupport.css.plugin.CssParserDefinition"/>
-        <lang.syntaxHighlighterFactory language="Css"
-                                       implementationClass="com.tcpip147.websupport.css.plugin.CssSyntaxHighlighterFactory"/>
-        <annotator language="Css" implementationClass="com.tcpip147.websupport.css.plugin.CssAnnotator"/>
         <fileEditorProvider implementation="com.tcpip147.websupport.css.plugin.CssFileEditorProvider"/>
     </extensions>
 </idea-plugin>

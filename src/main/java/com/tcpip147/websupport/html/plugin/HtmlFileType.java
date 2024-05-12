@@ -22,7 +22,7 @@ public class HtmlFileType extends LanguageFileType {
 
     @Override
     public @NonNls @NotNull String getName() {
-        return "Html File";
+        return "Html";
     }
 
     @Override
