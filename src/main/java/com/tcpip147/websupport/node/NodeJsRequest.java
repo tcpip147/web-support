@@ -3,7 +3,8 @@ package com.tcpip147.websupport.node;
 public class NodeJsRequest {
 
     public static final String MODULE_TYPE_PRETTIER = "prettier";
-    public static final String MODULE_TYPE_TOKEN = "token";
+    public static final String MODULE_TYPE_HIGHLIGHT = "highlight";
+    public static final String MODULE_TYPE_ERROR = "error";
     public static final String MODULE_TYPE_AUTO_COMPLETE = "autoComplete";
 
     private String moduleType;
@@ -20,9 +21,9 @@ public class NodeJsRequest {
 
     public String build() {
         if (parameter != null) {
-            return moduleType + " " + parameter + "\n" + requestId + "\n" + body;
+            return moduleType + " " + parameter + "\n" + requestId + "\n" + body + "\n<!EOF>\n";
         } else {
-            return moduleType + "\n" + requestId + "\n" + body;
+            return moduleType + "\n" + requestId + "\n" + body + "\n<!EOF>";
         }
     }
 }

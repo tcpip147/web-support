@@ -38,20 +38,43 @@ public class OnStartupProject implements ProjectActivity {
         if (!entry.exists()) {
             try {
                 String text = """
+                        const readline = require('readline');
                         const prettier = require("prettier");
-                        const postcss = require("postcss");
+                        const csstree = require("css-tree");
+                        
+                        const interface = readline.createInterface({
+                          input: process.stdin,
+                          output: process.stdout,
+                          terminal: false
+                        });
                                                 
-                        process.stdin.on("data", (data) => {
-                            const request = parseProtocol(data);
-                            if (request.moduleType == "prettier") {
-                                prettier.format(request.body, { parser: request.parameter }).then(res => {
-                                    response(request, res);
-                                });
+                        let protocol = "";
+                        interface.on('line', (line) => {
+                            if (line == "<!EOF>") {
+                                const request = parseProtocol(protocol);
+                                protocol = "";
+                                if (request.moduleType == "prettier") {
+                                    prettier.format(request.body, { parser: request.parameter }).then(res => {
+                                        response(request, res);
+                                    }).catch(e => {
+                                        response(request, request.body.substring(0, request.body.length - 1));
+                                    });
+                                } else if (request.moduleType == "highlight") {
+                                    const ast = csstree.parse(request.body);
+                                    const text = "";
+                                    csstree.walk(ast, (node) => {
+                                        console.log(node);
+                                    });
+                                    // response(request, ast);
+                                } else if (request.moduleType == "error") {
+                                    // response(request, request.body);
+                                }
+                            } else {
+                                protocol += line + "\\n";
                             }
                         });
-                             
-                        function parseProtocol(data) {
-                            const raw = Buffer.from(data).toString();
+                                                
+                        function parseProtocol(raw) {
                             const firstIndex = raw.indexOf("\\n");
                             const secondIndex = raw.indexOf("\\n", firstIndex + 1);
                             const firstLine = raw.substring(0, firstIndex);
@@ -65,7 +88,7 @@ public class OnStartupProject implements ProjectActivity {
                             const body = raw.substring(secondIndex + 1);
                             return { moduleType, parameter, requestId, body };
                         }
-                        
+                                                
                         function response(request, body) {
                             console.log(request.moduleType + "\\n" + request.requestId + "\\n" + body + "\\n<!EOF>");
                         }
@@ -83,6 +106,7 @@ public class OnStartupProject implements ProjectActivity {
         commands.add("npm.cmd");
         commands.add("install");
         commands.add("prettier");
+        commands.add("css-tree");
         commands.add("postcss");
         processBuilder.command(commands);
         try {
@@ -136,6 +160,7 @@ public class OnStartupProject implements ProjectActivity {
                         if (i++ > 0) {
                             sb.append("\n");
                         }
+                        System.out.println(line);
                         sb.append(line);
                     }
                 } catch (IOException e) {
