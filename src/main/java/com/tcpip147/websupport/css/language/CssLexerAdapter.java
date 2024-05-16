@@ -5,6 +5,6 @@ import com.intellij.lexer.FlexAdapter;
 public class CssLexerAdapter extends FlexAdapter {
 
     public CssLexerAdapter() {
-        super(null);
+        super(new CssLexer(null));
     }
 }
