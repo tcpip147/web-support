@@ -5,17 +5,12 @@
     <description><![CDATA[This plugin supports web language developments.]]></description>
     <depends>com.intellij.modules.platform</depends>
     <extensions defaultExtensionNs="com.intellij">
-        <postStartupActivity implementation="com.tcpip147.websupport.OnStartupProject"/>
-        <fileType name="Html"
-                  implementationClass="com.tcpip147.websupport.html.plugin.HtmlFileType"
-                  fieldName="INSTANCE"
-                  language="HTML"
-                  extensions="html"/>
         <fileType name="Css"
                   implementationClass="com.tcpip147.websupport.css.plugin.CssFileType"
                   fieldName="INSTANCE"
                   language="Css"
                   extensions="css"/>
-        <fileEditorProvider implementation="com.tcpip147.websupport.css.plugin.CssFileEditorProvider"/>
+        <lang.parserDefinition language="Css"
+                               implementationClass="com.tcpip147.websupport.css.plugin.CssParserDefinition"/>
     </extensions>
 </idea-plugin>
