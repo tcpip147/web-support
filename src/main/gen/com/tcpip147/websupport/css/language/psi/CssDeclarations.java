@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface CssRuleset extends PsiElement {
+public interface CssDeclarations extends PsiElement {
 
   @NotNull
-  CssDeclarations getDeclarations();
-
-  @NotNull
-  List<CssSelector> getSelectorList();
+  List<CssDeclaration> getDeclarationList();
 
 }

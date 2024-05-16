@@ -6,11 +6,13 @@
     <depends>com.intellij.modules.platform</depends>
     <extensions defaultExtensionNs="com.intellij">
         <fileType name="Css"
-                  implementationClass="com.tcpip147.websupport.css.plugin.CssFileType"
+                  implementationClass="com.tcpip147.websupport.css.file.CssFileType"
                   fieldName="INSTANCE"
                   language="Css"
                   extensions="css"/>
         <lang.parserDefinition language="Css"
-                               implementationClass="com.tcpip147.websupport.css.plugin.CssParserDefinition"/>
+                               implementationClass="com.tcpip147.websupport.css.language.CssParserDefinition"/>
+        <lang.formatter language="Css"
+                        implementationClass="com.tcpip147.websupport.css.formatter.CssFormattingModelBuilder"/>
     </extensions>
 </idea-plugin>

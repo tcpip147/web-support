@@ -1,4 +1,4 @@
-package com.tcpip147.websupport.css.plugin;
+package com.tcpip147.websupport.css.file;
 
 import com.intellij.lang.Language;
 

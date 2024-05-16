@@ -12,6 +12,7 @@ public interface CssTypes {
   IElementType CLASS = new CssElementType("CLASS");
   IElementType COMBINATOR = new CssElementType("COMBINATOR");
   IElementType DECLARATION = new CssElementType("DECLARATION");
+  IElementType DECLARATIONS = new CssElementType("DECLARATIONS");
   IElementType ELEMENT_NAME = new CssElementType("ELEMENT_NAME");
   IElementType EXPR = new CssElementType("EXPR");
   IElementType FUNCTION = new CssElementType("FUNCTION");
@@ -84,6 +85,9 @@ public interface CssTypes {
       }
       else if (type == DECLARATION) {
         return new CssDeclarationImpl(node);
+      }
+      else if (type == DECLARATIONS) {
+        return new CssDeclarationsImpl(node);
       }
       else if (type == ELEMENT_NAME) {
         return new CssElementNameImpl(node);

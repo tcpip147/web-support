@@ -134,6 +134,57 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // BRACKET_OPEN declaration? (SEMI_COLON declaration?)* BRACKET_CLOSE
+  public static boolean declarations(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declarations")) return false;
+    if (!nextTokenIs(b, BRACKET_OPEN)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, BRACKET_OPEN);
+    r = r && declarations_1(b, l + 1);
+    r = r && declarations_2(b, l + 1);
+    r = r && consumeToken(b, BRACKET_CLOSE);
+    exit_section_(b, m, DECLARATIONS, r);
+    return r;
+  }
+
+  // declaration?
+  private static boolean declarations_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declarations_1")) return false;
+    declaration(b, l + 1);
+    return true;
+  }
+
+  // (SEMI_COLON declaration?)*
+  private static boolean declarations_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declarations_2")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!declarations_2_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "declarations_2", c)) break;
+    }
+    return true;
+  }
+
+  // SEMI_COLON declaration?
+  private static boolean declarations_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declarations_2_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, SEMI_COLON);
+    r = r && declarations_2_0_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // declaration?
+  private static boolean declarations_2_0_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declarations_2_0_1")) return false;
+    declaration(b, l + 1);
+    return true;
+  }
+
+  /* ********************************************************** */
   // IDENT | OP_MULTI
   public static boolean element_name(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "element_name")) return false;
@@ -471,17 +522,14 @@ public class CssParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // selector (COMMA selector)* BRACKET_OPEN declaration? (SEMI_COLON declaration?)* BRACKET_CLOSE
+  // selector (COMMA selector)* declarations
   public static boolean ruleset(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ruleset")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, RULESET, "<ruleset>");
     r = selector(b, l + 1);
     r = r && ruleset_1(b, l + 1);
-    r = r && consumeToken(b, BRACKET_OPEN);
-    r = r && ruleset_3(b, l + 1);
-    r = r && ruleset_4(b, l + 1);
-    r = r && consumeToken(b, BRACKET_CLOSE);
+    r = r && declarations(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -506,42 +554,6 @@ public class CssParser implements PsiParser, LightPsiParser {
     r = r && selector(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
-  }
-
-  // declaration?
-  private static boolean ruleset_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ruleset_3")) return false;
-    declaration(b, l + 1);
-    return true;
-  }
-
-  // (SEMI_COLON declaration?)*
-  private static boolean ruleset_4(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ruleset_4")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!ruleset_4_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "ruleset_4", c)) break;
-    }
-    return true;
-  }
-
-  // SEMI_COLON declaration?
-  private static boolean ruleset_4_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ruleset_4_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, SEMI_COLON);
-    r = r && ruleset_4_0_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // declaration?
-  private static boolean ruleset_4_0_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "ruleset_4_0_1")) return false;
-    declaration(b, l + 1);
-    return true;
   }
 
   /* ********************************************************** */

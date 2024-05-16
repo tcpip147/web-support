@@ -23,6 +23,10 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitDeclarations(@NotNull CssDeclarations o) {
+    visitPsiElement(o);
+  }
+
   public void visitElementName(@NotNull CssElementName o) {
     visitPsiElement(o);
   }

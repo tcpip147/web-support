@@ -11,14 +11,14 @@ import static com.tcpip147.websupport.css.language.psi.CssTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.tcpip147.websupport.css.language.psi.*;
 
-public class CssRulesetImpl extends ASTWrapperPsiElement implements CssRuleset {
+public class CssDeclarationsImpl extends ASTWrapperPsiElement implements CssDeclarations {
 
-  public CssRulesetImpl(@NotNull ASTNode node) {
+  public CssDeclarationsImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull CssVisitor visitor) {
-    visitor.visitRuleset(this);
+    visitor.visitDeclarations(this);
   }
 
   @Override
@@ -29,14 +29,8 @@ public class CssRulesetImpl extends ASTWrapperPsiElement implements CssRuleset {
 
   @Override
   @NotNull
-  public CssDeclarations getDeclarations() {
-    return findNotNullChildByClass(CssDeclarations.class);
-  }
-
-  @Override
-  @NotNull
-  public List<CssSelector> getSelectorList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, CssSelector.class);
+  public List<CssDeclaration> getDeclarationList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, CssDeclaration.class);
   }
 
 }

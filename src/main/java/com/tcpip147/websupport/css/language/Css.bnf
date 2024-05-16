@@ -40,7 +40,9 @@ combinator ::= OP_PLUS | GREATER_THAN
 
 property ::= IDENT
 
-ruleset ::= selector (COMMA selector)* BRACKET_OPEN declaration? (SEMI_COLON declaration?)* BRACKET_CLOSE
+ruleset ::= selector (COMMA selector)* declarations
+
+declarations ::= BRACKET_OPEN declaration? (SEMI_COLON declaration?)* BRACKET_CLOSE
 
 selector ::= simple_selector (combinator selector | (combinator? selector)?)?
 

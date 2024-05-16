@@ -1,4 +1,4 @@
-package com.tcpip147.websupport.css.plugin;
+package com.tcpip147.websupport.css.language;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.ParserDefinition;
@@ -10,8 +10,8 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
-import com.tcpip147.websupport.css.language.*;
 import com.tcpip147.websupport.css.language.psi.CssTypes;
+import com.tcpip147.websupport.css.file.CssLanguage;
 import org.jetbrains.annotations.NotNull;
 
 public class CssParserDefinition implements ParserDefinition {
