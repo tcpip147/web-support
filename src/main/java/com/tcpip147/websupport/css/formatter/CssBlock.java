@@ -35,7 +35,23 @@ public class CssBlock extends AbstractBlock {
 
     @Override
     public @Nullable Indent getIndent() {
-        return Indent.getNormalIndent();
+        if (!"BRACKET_CLOSE".equals(myNode.getElementType().getDebugName())) {
+            if (findPrevBracket(myNode)) {
+                return Indent.getNormalIndent();
+            }
+        }
+        return Indent.getNoneIndent();
+    }
+
+    private boolean findPrevBracket(ASTNode myNode) {
+        ASTNode prev = myNode.getTreePrev();
+        while (prev != null) {
+            if ("BRACKET_OPEN".equals(prev.getElementType().getDebugName())) {
+                return true;
+            }
+            prev = prev.getTreePrev();
+        }
+        return false;
     }
 
     @Override
