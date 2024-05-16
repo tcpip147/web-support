@@ -45,7 +45,7 @@ public class CssParserDefinition implements ParserDefinition {
 
     @Override
     public @NotNull TokenSet getStringLiteralElements() {
-        return TokenSet.EMPTY;
+        return CssTokenSets.STRING;
     }
 
     @Override

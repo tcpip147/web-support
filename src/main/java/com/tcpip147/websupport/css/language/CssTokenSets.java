@@ -7,5 +7,6 @@ public interface CssTokenSets {
 
     TokenSet COMMENTS = TokenSet.create(CssTypes.COMMENT);
     TokenSet WHITE_SPACE = TokenSet.create(CssTypes.WHITE_SPACE);
+    TokenSet STRING = TokenSet.create(CssTypes.STRING);
 
 }
