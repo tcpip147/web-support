@@ -11,7 +11,6 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
 import com.tcpip147.websupport.css.language.psi.CssTypes;
-import com.tcpip147.websupport.css.file.CssLanguage;
 import org.jetbrains.annotations.NotNull;
 
 public class CssParserDefinition implements ParserDefinition {

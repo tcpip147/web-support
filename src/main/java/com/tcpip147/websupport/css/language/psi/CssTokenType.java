@@ -3,7 +3,7 @@
 package com.tcpip147.websupport.css.language.psi;
 
 import com.intellij.psi.tree.IElementType;
-import com.tcpip147.websupport.css.file.CssLanguage;
+import com.tcpip147.websupport.css.language.CssLanguage;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 
@@ -11,11 +11,6 @@ public class CssTokenType extends IElementType {
 
   public CssTokenType(@NotNull @NonNls String debugName) {
     super(debugName, CssLanguage.INSTANCE);
-  }
-
-  @Override
-  public String toString() {
-    return "CssTokenType." + super.toString();
   }
 
 }

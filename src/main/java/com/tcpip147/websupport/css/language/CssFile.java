@@ -3,8 +3,6 @@ package com.tcpip147.websupport.css.language;
 import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;
-import com.tcpip147.websupport.css.file.CssFileType;
-import com.tcpip147.websupport.css.file.CssLanguage;
 import org.jetbrains.annotations.NotNull;
 
 public class CssFile extends PsiFileBase {

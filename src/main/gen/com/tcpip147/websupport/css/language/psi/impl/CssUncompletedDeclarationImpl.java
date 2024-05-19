@@ -11,32 +11,20 @@ import static com.tcpip147.websupport.css.language.psi.CssTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.tcpip147.websupport.css.language.psi.*;
 
-public class CssDeclarationImpl extends ASTWrapperPsiElement implements CssDeclaration {
+public class CssUncompletedDeclarationImpl extends ASTWrapperPsiElement implements CssUncompletedDeclaration {
 
-  public CssDeclarationImpl(@NotNull ASTNode node) {
+  public CssUncompletedDeclarationImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull CssVisitor visitor) {
-    visitor.visitDeclaration(this);
+    visitor.visitUncompletedDeclaration(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof CssVisitor) accept((CssVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @Nullable
-  public CssCompletedDeclaration getCompletedDeclaration() {
-    return findChildByClass(CssCompletedDeclaration.class);
-  }
-
-  @Override
-  @Nullable
-  public CssUncompletedDeclaration getUncompletedDeclaration() {
-    return findChildByClass(CssUncompletedDeclaration.class);
   }
 
 }

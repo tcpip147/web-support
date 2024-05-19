@@ -113,24 +113,37 @@ public class CssParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // property COLON expr prio?
-  public static boolean declaration(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "declaration")) return false;
+  public static boolean completedDeclaration(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "completedDeclaration")) return false;
     if (!nextTokenIs(b, IDENT)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = property(b, l + 1);
     r = r && consumeToken(b, COLON);
     r = r && expr(b, l + 1);
-    r = r && declaration_3(b, l + 1);
-    exit_section_(b, m, DECLARATION, r);
+    r = r && completedDeclaration_3(b, l + 1);
+    exit_section_(b, m, COMPLETED_DECLARATION, r);
     return r;
   }
 
   // prio?
-  private static boolean declaration_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "declaration_3")) return false;
+  private static boolean completedDeclaration_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "completedDeclaration_3")) return false;
     prio(b, l + 1);
     return true;
+  }
+
+  /* ********************************************************** */
+  // completedDeclaration | uncompletedDeclaration
+  public static boolean declaration(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "declaration")) return false;
+    if (!nextTokenIs(b, IDENT)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = completedDeclaration(b, l + 1);
+    if (!r) r = uncompletedDeclaration(b, l + 1);
+    exit_section_(b, m, DECLARATION, r);
+    return r;
   }
 
   /* ********************************************************** */
@@ -868,6 +881,18 @@ public class CssParser implements PsiParser, LightPsiParser {
     if (!r) r = consumeToken(b, ANGLE);
     if (!r) r = consumeToken(b, TIME);
     if (!r) r = consumeToken(b, FREQ);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // IDENT
+  public static boolean uncompletedDeclaration(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "uncompletedDeclaration")) return false;
+    if (!nextTokenIs(b, IDENT)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, IDENT);
+    exit_section_(b, m, UNCOMPLETED_DECLARATION, r);
     return r;
   }
 

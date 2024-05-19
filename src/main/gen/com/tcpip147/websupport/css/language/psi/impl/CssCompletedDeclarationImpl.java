@@ -11,14 +11,14 @@ import static com.tcpip147.websupport.css.language.psi.CssTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.tcpip147.websupport.css.language.psi.*;
 
-public class CssDeclarationImpl extends ASTWrapperPsiElement implements CssDeclaration {
+public class CssCompletedDeclarationImpl extends ASTWrapperPsiElement implements CssCompletedDeclaration {
 
-  public CssDeclarationImpl(@NotNull ASTNode node) {
+  public CssCompletedDeclarationImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull CssVisitor visitor) {
-    visitor.visitDeclaration(this);
+    visitor.visitCompletedDeclaration(this);
   }
 
   @Override
@@ -28,15 +28,21 @@ public class CssDeclarationImpl extends ASTWrapperPsiElement implements CssDecla
   }
 
   @Override
-  @Nullable
-  public CssCompletedDeclaration getCompletedDeclaration() {
-    return findChildByClass(CssCompletedDeclaration.class);
+  @NotNull
+  public CssExpr getExpr() {
+    return findNotNullChildByClass(CssExpr.class);
   }
 
   @Override
   @Nullable
-  public CssUncompletedDeclaration getUncompletedDeclaration() {
-    return findChildByClass(CssUncompletedDeclaration.class);
+  public CssPrio getPrio() {
+    return findChildByClass(CssPrio.class);
+  }
+
+  @Override
+  @NotNull
+  public CssProperty getProperty() {
+    return findNotNullChildByClass(CssProperty.class);
   }
 
 }

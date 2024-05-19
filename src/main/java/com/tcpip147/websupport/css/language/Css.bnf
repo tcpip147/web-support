@@ -56,7 +56,11 @@ attrib ::= SQUARE_BRACKET_OPEN IDENT ((OP_EQUALS | INCLUDES | DASHMATCH) (IDENT 
 
 pseudo ::= COLON (IDENT | IDENT PARENTHESES_OPEN IDENT? PARENTHESES_CLOSE)
 
-declaration ::= property COLON expr prio?
+declaration ::= completedDeclaration | uncompletedDeclaration
+
+completedDeclaration ::= property COLON expr prio?
+
+uncompletedDeclaration ::= IDENT
 
 prio ::= IMPORTANT_SYM
 

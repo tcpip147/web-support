@@ -5,12 +5,15 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface CssDeclaration extends PsiElement {
+public interface CssCompletedDeclaration extends PsiElement {
+
+  @NotNull
+  CssExpr getExpr();
 
   @Nullable
-  CssCompletedDeclaration getCompletedDeclaration();
+  CssPrio getPrio();
 
-  @Nullable
-  CssUncompletedDeclaration getUncompletedDeclaration();
+  @NotNull
+  CssProperty getProperty();
 
 }

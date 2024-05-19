@@ -13,7 +13,7 @@ import javax.swing.*;
 public class HtmlFileType extends LanguageFileType {
 
     public static final HtmlFileType INSTANCE = new HtmlFileType();
-    public static final Icon ICON = IconLoader.getIcon("/html.png", HtmlFileType.class);
+    public static final Icon ICON = IconLoader.getIcon("/html.svg", HtmlFileType.class);
     public static final String EXTENSION = "html";
 
     protected HtmlFileType() {

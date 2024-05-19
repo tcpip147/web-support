@@ -5,8 +5,9 @@
     <description><![CDATA[This plugin supports web language developments.]]></description>
     <depends>com.intellij.modules.platform</depends>
     <extensions defaultExtensionNs="com.intellij">
+        <typedHandler implementation="com.tcpip147.websupport.TypedHandler"/>
         <fileType name="Css"
-                  implementationClass="com.tcpip147.websupport.css.file.CssFileType"
+                  implementationClass="com.tcpip147.websupport.css.language.CssFileType"
                   fieldName="INSTANCE"
                   language="Css"
                   extensions="css"/>
@@ -14,5 +15,7 @@
                                implementationClass="com.tcpip147.websupport.css.language.CssParserDefinition"/>
         <lang.formatter language="Css"
                         implementationClass="com.tcpip147.websupport.css.formatter.CssFormattingModelBuilder"/>
+        <completion.contributor language="Css"
+                                implementationClass="com.tcpip147.websupport.css.completion.CssCompletionContributor"/>
     </extensions>
 </idea-plugin>

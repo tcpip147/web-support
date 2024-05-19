@@ -3,7 +3,7 @@
 package com.tcpip147.websupport.css.language.psi;
 
 import com.intellij.psi.tree.IElementType;
-import com.tcpip147.websupport.css.file.CssLanguage;
+import com.tcpip147.websupport.css.language.CssLanguage;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 

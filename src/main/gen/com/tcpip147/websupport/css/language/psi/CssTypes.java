@@ -11,6 +11,7 @@ public interface CssTypes {
   IElementType ATTRIB = new CssElementType("ATTRIB");
   IElementType CLASS = new CssElementType("CLASS");
   IElementType COMBINATOR = new CssElementType("COMBINATOR");
+  IElementType COMPLETED_DECLARATION = new CssElementType("COMPLETED_DECLARATION");
   IElementType DECLARATION = new CssElementType("DECLARATION");
   IElementType DECLARATIONS = new CssElementType("DECLARATIONS");
   IElementType ELEMENT_NAME = new CssElementType("ELEMENT_NAME");
@@ -31,6 +32,7 @@ public interface CssTypes {
   IElementType SELECTOR = new CssElementType("SELECTOR");
   IElementType SIMPLE_SELECTOR = new CssElementType("SIMPLE_SELECTOR");
   IElementType TERM = new CssElementType("TERM");
+  IElementType UNCOMPLETED_DECLARATION = new CssElementType("UNCOMPLETED_DECLARATION");
 
   IElementType ANGLE = new CssTokenType("ANGLE");
   IElementType BRACKET_CLOSE = new CssTokenType("BRACKET_CLOSE");
@@ -82,6 +84,9 @@ public interface CssTypes {
       }
       else if (type == COMBINATOR) {
         return new CssCombinatorImpl(node);
+      }
+      else if (type == COMPLETED_DECLARATION) {
+        return new CssCompletedDeclarationImpl(node);
       }
       else if (type == DECLARATION) {
         return new CssDeclarationImpl(node);
@@ -142,6 +147,9 @@ public interface CssTypes {
       }
       else if (type == TERM) {
         return new CssTermImpl(node);
+      }
+      else if (type == UNCOMPLETED_DECLARATION) {
+        return new CssUncompletedDeclarationImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

@@ -19,6 +19,10 @@ public class CssVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitCompletedDeclaration(@NotNull CssCompletedDeclaration o) {
+    visitPsiElement(o);
+  }
+
   public void visitDeclaration(@NotNull CssDeclaration o) {
     visitPsiElement(o);
   }
@@ -96,6 +100,10 @@ public class CssVisitor extends PsiElementVisitor {
   }
 
   public void visitTerm(@NotNull CssTerm o) {
+    visitPsiElement(o);
+  }
+
+  public void visitUncompletedDeclaration(@NotNull CssUncompletedDeclaration o) {
     visitPsiElement(o);
   }
 
